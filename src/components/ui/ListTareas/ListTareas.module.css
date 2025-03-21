@@ -1,0 +1,73 @@
+.containerPrincipal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.containerTitleAndButton {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 70%;
+}
+
+.containerTitleAndButton h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.containerTitleAndButton button {
+    padding: 0.8rem 1.5rem;
+    background-color: #3498db;
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.containerTitleAndButton button:hover {
+    background-color: #2980b9;
+    box-shadow: 0px 4px 8px rgba(52, 152, 219, 0.3);
+}
+
+.containerList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: #ecf0f1;
+    width: 70%;
+    min-height: 60vh;
+    max-height: 62vh;
+    overflow-y: auto;
+    border-radius: 12px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilizando el scroll */
+.containerList::-webkit-scrollbar {
+    width: 8px;
+}
+
+.containerList::-webkit-scrollbar-track {
+    background: #d5dbdb;
+    border-radius: 10px;
+}
+
+.containerList::-webkit-scrollbar-thumb {
+    background: #7f8c8d;
+    border-radius: 10px;
+}
+
+.containerList h3 {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+}
