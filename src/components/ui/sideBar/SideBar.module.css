@@ -1,0 +1,63 @@
+.sideBar {
+    width: 25%;
+    height: 100vh; /* Altura completa de la pantalla */
+    background-color: #f4f4f4; /* Puedes ajustar el color */
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: #A5BED4;
+  }
+  
+  .backlogButtonContainer {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .backlogButton {
+    background-color: #007bff; /* Azul */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    width: 50%;
+  }
+  
+  .sprintSection {
+    flex-grow: 1;
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #F5F7FA;
+    border-radius: 15px;
+  }
+  
+  .sprintTitle {
+    font-size: 1.7rem;
+    margin-bottom: 10px;
+  }
+  
+  .divider {
+    width: 58%; /* O ajusta al porcentaje o tamaño que desees */
+    border: 1px solid #000000;
+    margin-bottom: 15px;
+    align-self:center; /* Asegúrate de que tome todo el ancho disponible dentro de su contenedor */
+  }
+  
+  
+  .createSprintButton {
+    background-color: #28a745; /* Verde */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    margin-bottom: 15px;
+    width: 30%;
+  }
+  
+  .cardSprintList {
+   width: 80%;
+  }

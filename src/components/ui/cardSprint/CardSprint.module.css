@@ -1,0 +1,44 @@
+.cardSprint {
+    width: 100%;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .sprintTitle {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .dateFields {
+    margin-bottom: 15px;
+  }
+  
+  .dateField {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .iconsContainer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  
+  .icon {
+    font-size: 18px;
+    cursor: pointer;
+    color: #007bff; /* Puedes ajustar el color */
+    transition: color 0.3s ease;
+  }
+  
+  .icon:hover {
+    color: #0056b3; /* Color al pasar el cursor */
+  }

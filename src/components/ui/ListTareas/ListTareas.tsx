@@ -31,9 +31,10 @@ export const ListTareas = () => {
   return (
     <>
     <div className={styles.containerPrincipal}>
+        <h1  className={styles.containerTitleAndButton}><strong>Backlog</strong></h1>
         <div className={styles.containerTitleAndButton}>
-            <h2>Lista de tareas</h2>
-            <button onClick={()=>{setOpenModalTarea(true)}}>Agregar Tarea</button>
+            <h2>Tareas en el Backlog</h2>
+            <button onClick={()=>{setOpenModalTarea(true)}}>Crear Tarea</button>
         </div>
         <div className={styles.containerList}>
             {tareas.length > 0 ? (
