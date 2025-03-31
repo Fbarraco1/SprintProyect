@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { tareaStore } from "../../../store/tareaStore"
 import styles from "./ListTareas.module.css"
 import { CardList } from "../cardList/cardList";
-import { Modal } from "../Modal/Modal";
+import { Modal } from "../ModalTarea/Modal";
 import { ITarea } from "../../../types/ITarea";
 import { useTareas } from "../../../hooks/useTareas";
 

@@ -4,13 +4,27 @@
       "id": "12345",
       "titulo": "TitleJ3",
       "descripcion": "yao yao yao yei",
-      "fechaLimite": "2/8/2014"
+      "fechaLimite": "2025-03-19"
     },
     {
       "id": "Thu Mar 20 2025",
-      "titulo": "new tarea",
-      "descripcion": "terminar urgente",
-      "fechaLimite": "2025-03-01"
+      "titulo": "Tarea de ejemplo",
+      "descripcion": "Descripcion de ejemplo",
+      "fechaLimite": "2025-03-13"
+    }
+  ],
+  "sprints": [
+    {
+      "id": "Thu Mar 20 2025",
+      "titulo": "Sprint 1",
+      "fechaInicio": "2025-05-15",
+      "fechaFin": "2025-03-13"
+    },
+    {
+      "id": "Sun Mar 30 2025",
+      "titulo": "Sprint Chirolas",
+      "fechaInicio": "2025-03-14",
+      "fechaFin": "2025-03-29"
     }
   ]
 }
