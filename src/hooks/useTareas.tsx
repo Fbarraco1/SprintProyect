@@ -1,5 +1,5 @@
 import { useShallow } from "zustand/shallow"
-import { tareaStore } from "../store/tareaStore"
+import { tareaStore } from "../store/backLogStore"
 import { editarTarea, eliminarTareaPorID, getAllTareas, postNuevaTarea } from "../http/tarea"
 import { ITarea } from "../types/ITarea"
 import Swal from "sweetalert2"

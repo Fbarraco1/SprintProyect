@@ -56,7 +56,7 @@ const {sprints, setArraySprint, agregarNuevoSprint, eliminarUnSprint,editarUnSpr
         });
 
         if(!confirm.isConfirmed) return;
-        eliminarSprint(idSprint)
+        eliminarUnSprint(idSprint)
         try {
             await eliminarSprintPorID(idSprint)
             Swal.fire("Eliminado", "Sprint fue eliminado correctamente", "success")

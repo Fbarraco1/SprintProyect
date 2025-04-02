@@ -1,0 +1,10 @@
+.mainContainer {
+    display: flex;
+    width: 100%; /* Cambiar de 100vw a 100% */
+    height: 100vh; /* Opcional, para ocupar toda la altura de la pantalla */
+    overflow-x: hidden; /* Prevenir desplazamiento horizontal */
+  }
+  
+  .mainContainer, .sideBar, .Sprint {
+    box-sizing: border-box;
+}

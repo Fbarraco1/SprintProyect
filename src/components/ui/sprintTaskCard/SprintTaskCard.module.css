@@ -1,0 +1,67 @@
+/* sprintTaskCard.module.css */
+.cardContainer {
+    background-color: white;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    position: relative;
+  }
+  
+  .cardContainer:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .cardContainer h4 {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+  }
+  
+  .cardContainer p {
+    color: #666;
+    font-size: 14px;
+    margin: 8px 0;
+  }
+  
+  .moveBtn {
+    background-color: #226C52;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    margin: 5px 5px 5px 0;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    color: #fff;
+  }
+  
+  .moveBtn:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .icons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 12px;
+    border-top: 1px solid #eee;
+    padding-top: 8px;
+  }
+  
+  .icons span {
+    cursor: pointer;
+    margin-left: 12px;
+    font-size: 16px;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  
+  .icons span:hover {
+    opacity: 1;
+  }

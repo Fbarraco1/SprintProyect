@@ -1,5 +1,5 @@
 import { ChangeEvent, FC, FormEvent, useEffect, useState } from "react"
-import { tareaStore } from "../../../store/tareaStore"
+import { tareaStore } from "../../../store/backLogStore"
 import style from "./Modal.module.css"
 import { ITarea } from "../../../types/ITarea"
 import { useTareas } from "../../../hooks/useTareas"

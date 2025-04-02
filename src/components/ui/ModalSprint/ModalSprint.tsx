@@ -20,9 +20,15 @@ export const ModalSprint :FC<IModalSprint>= ({handleCloseModal}) => {
     const {crearSprint, putSprintEditar} = useSprints()
 
     const [formValues, setFormValues] = useState<ISprint>(initialState)
-    useEffect(()=>{
-        if(sprintActivo) setFormValues(sprintActivo)
-    }, [])
+
+ // Actualiza esto
+    useEffect(() => {
+        if (sprintActivo) {
+            setFormValues(sprintActivo)
+        } else {
+            setFormValues(initialState) // Resetea el formulario si no hay sprint activo
+        }
+    }, [sprintActivo]) // Agrega sprintActivo como dependencia
 
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>{
         const {name, value} = e.target

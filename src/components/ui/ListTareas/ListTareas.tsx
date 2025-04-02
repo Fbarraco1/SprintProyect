@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { tareaStore } from "../../../store/tareaStore"
+import { tareaStore } from "../../../store/backLogStore"
 import styles from "./ListTareas.module.css"
 import { CardList } from "../cardList/cardList";
 import { Modal } from "../ModalTarea/Modal";
@@ -39,8 +39,9 @@ export const ListTareas = () => {
         <div className={styles.containerList}>
             {tareas.length > 0 ? (
             tareas.map((el) => <CardList 
-            handleOpenModalEdit={handleOpenModalEdit}
-            tarea={el} />)
+                        key={el.id} 
+                        handleOpenModalEdit={handleOpenModalEdit}
+                        tarea={el} />)
             ):(
             <div>
                 <h3>No hay tareas</h3>
