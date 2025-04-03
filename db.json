@@ -16,15 +16,9 @@
   "sprints": [
     {
       "id": "Thu Mar 20 2025",
-      "titulo": "Sprint 1",
+      "titulo": "Sprint 2",
       "fechaInicio": "2025-05-15",
       "fechaFin": "2025-03-13"
-    },
-    {
-      "id": "Sun Mar 30 2025",
-      "titulo": "Sprint Chirolas",
-      "fechaInicio": "2025-03-14",
-      "fechaFin": "2025-03-29"
     }
   ]
 }

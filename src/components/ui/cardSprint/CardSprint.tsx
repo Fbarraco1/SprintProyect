@@ -19,9 +19,8 @@ export const CardSprint: FC<ISprintList> = ({ sprint, handleOpenModalEdit }) => 
     eliminarSprint(sprint.id!);
   };
 
-  const editarSprint = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    e.preventDefault(); // Añadir esto para asegurar
+  const editarSprint = () => {
+    
     console.log("Editando sprint:", sprint.id); // Añade este log para depuración
     handleOpenModalEdit(sprint);
   };
@@ -39,7 +38,7 @@ export const CardSprint: FC<ISprintList> = ({ sprint, handleOpenModalEdit }) => 
       </div>
       <div className={styles.iconsContainer}>
         <span 
-          onClick={(e) => { e.stopPropagation(); setSprintActivo(sprint); }} 
+          
           className={styles.icon}>&#128065;</span>
           
         <span 

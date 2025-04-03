@@ -1,4 +1,4 @@
-import { SprintTaskCard } from '../sprintTaskCard/sprintTaskCard';
+import { SprintTaskCard } from '../sprintTaskCard/SprintTaskCard';
 import styles from './Sprint.module.css';
 
 export const Sprint = () => {
