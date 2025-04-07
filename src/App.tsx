@@ -1,13 +1,10 @@
-import { TareasScreen } from "./components/screens/BackLogScreen/BackLogScreen";
-import { SprintScreen } from "./components/screens/SprintScreen/SprintScreen";
-import { sprintStore } from "./store/sprintStore";
+import { AppRouter } from "./routes/AppRouter";
 
 const App = () => {
-    const sprintActivo = sprintStore((state) => state.sprintActivo); // Simplificando Zustand
 
     return (
         <div>
-            {sprintActivo ? <SprintScreen sprint={sprintActivo} /> : <TareasScreen />}
+            <AppRouter/>
         </div>
     );
 };

@@ -8,6 +8,7 @@
     width: 100vw;
     height: 100vh;
     backdrop-filter: brightness(90%) blur(2px);
+    z-index: 1000;
 }
 
 .contentPopUp{

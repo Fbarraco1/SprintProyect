@@ -5,6 +5,7 @@ import { useSprints } from "../../../hooks/useSprints";
 import { ISprint } from "../../../types/ISprint";
 import { CardSprint } from "../cardSprint/CardSprint";
 import { ModalSprint } from "../ModalSprint/ModalSprint";
+import { useNavigate } from "react-router-dom";
 
 const SideBar = () => {
   // Obtener funciones y estados de los sprints
@@ -28,10 +29,17 @@ const SideBar = () => {
     setOpenModalSprint(false);
   };
 
+  const navigate = useNavigate();
+
+  // Función para manejar la navegación al inicio
+  const handleNavigateHome = () => {
+    navigate("/"); // Navega hacia la ruta principal
+  };
+
   return (
     <div className={styles.sideBar}>
       <div className={styles.backlogButtonContainer}>
-        <button className={styles.backlogButton}>Backlog</button>
+        <button className={styles.backlogButton} onClick={handleNavigateHome}>Backlog</button>
       </div>
       <div className={styles.sprintSection}>
         <h1 className={styles.sprintTitle}>Lista de Sprints</h1>
