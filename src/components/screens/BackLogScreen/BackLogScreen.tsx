@@ -4,7 +4,7 @@ import { ListTareas } from "../../ui/ListTareas/ListTareas";
 import SideBar from "../../ui/sideBar/SideBar";
 
 
-export const TareasScreen = () => {
+export const BackLogScreen = () => {
 
   return (
     <div>

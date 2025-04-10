@@ -14,6 +14,7 @@ export const ListTareas = () => {
 
     useEffect(()=> {
         getTareas();
+        console.log(tareas)
     },[])
 
     const [openModalTarea, setOpenModalTarea] = useState(false);

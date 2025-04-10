@@ -7,18 +7,16 @@ export const getAllTareas = async () =>{
     try {
         const response = await axios.get<ITarea[]>(API_URL)
         console.log(response.data)
-        return response.data
+        return response.data.tareas
 
     } catch (error) {
-        console.log(error)
+        console.error("Error posting nuevaTarea:", error);
     }
 };
 
 export const postNuevaTarea = async (nuevaTarea: ITarea) =>{
     try {
-        const response = await axios.post<ITarea>(API_URL,{
-            ...nuevaTarea,
-        });
+        const response = await axios.post<ITarea>(`${API_URL}`, nuevaTarea);
         return response.data
     } catch (error) {
         console.log(error)
