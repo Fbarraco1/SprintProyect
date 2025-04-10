@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import styles from "./SideBar.module.css";
 import { sprintStore } from "../../../store/sprintStore";
-import { useSprints } from "../../../hooks/useSprints";
 import { ISprint } from "../../../types/ISprint";
 import { CardSprint } from "../cardSprint/CardSprint";
 import { ModalSprint } from "../ModalSprint/ModalSprint";
+import { useSprint } from "../../../hooks/useSprint"; // Importamos el hook
 
 const SideBar = () => {
   // Obtener funciones y estados de los sprints
   const setSprintActivo = sprintStore((state) => state.setSprintActivo);
-  const { getSprints, sprints } = useSprints();
+  const { getSprints, sprints } = useSprint();
 
   // Efecto para obtener los sprints al cargar el componente
   useEffect(() => {
@@ -26,6 +26,7 @@ const SideBar = () => {
 
   const handleCloseModal = () => {
     setOpenModalSprint(false);
+    setSprintActivo(null); // Limpiamos el sprint activo al cerrar el modal
   };
 
   return (
@@ -38,7 +39,10 @@ const SideBar = () => {
         <hr className={styles.divider} />
         <button
           className={styles.createSprintButton}
-          onClick={() => setOpenModalSprint(true)}
+          onClick={() => {
+            setSprintActivo(null); // Aseguramos que no haya sprint activo al crear uno nuevo
+            setOpenModalSprint(true);
+          }}
         >
           Crear Sprint
         </button>

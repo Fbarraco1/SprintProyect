@@ -16,7 +16,9 @@ export const tareaStore = create<ITareaStore>((set)=>({
     tareas:[],
     tareaActiva: null,
 
-    setArrayTareas: (arrayDeTareas)=> set(()=>({tareas:arrayDeTareas})),
+    setArrayTareas: (arrayDeTareas) => set(() => ({
+        tareas: Array.isArray(arrayDeTareas) ? arrayDeTareas : []
+    })),
     agregarNuevaTarea: (nuevaTarea)=> set((state)=>({tareas:[...state.tareas, nuevaTarea]})),
     editarUnaTarea: (tareaEditada)=> 
         set((state)=>{

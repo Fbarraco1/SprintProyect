@@ -9,9 +9,13 @@ type IModal = {
 }
 
 const initialState: ITarea ={
+    id: "",
+    estado: "",
     titulo: "",
     descripcion: "",
     fechaLimite: "",
+    
+    
 }
 export const Modal :FC<IModal>= ({handleCloseModal}) => {
     const tareaActiva = tareaStore((state)=> state.tareaActiva)

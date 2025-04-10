@@ -1,12 +1,14 @@
 import axios from "axios";
 import { ITarea } from "../types/ITarea";
 
-const API_URL = "http://localhost:3000/tareas";
+const API_URL = "http://localhost:3000/backlog";
 
 export const getAllTareas = async () =>{
     try {
         const response = await axios.get<ITarea[]>(API_URL)
+        console.log(response.data)
         return response.data
+
     } catch (error) {
         console.log(error)
     }

@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { ISprint } from "../../../types/ISprint";
 import styles from "./CardSprint.module.css";
-import { useSprints } from "../../../hooks/useSprints";
+import { useSprint } from "../../../hooks/useSprint";
 import { sprintStore } from "../../../store/sprintStore";
 
 type ISprintList = {
@@ -10,7 +10,7 @@ type ISprintList = {
 };
 
 export const CardSprint: FC<ISprintList> = ({ sprint, handleOpenModalEdit }) => {
-  const { eliminarSprint } = useSprints();
+  const { eliminarSprint } = useSprint();
   const setSprintActivo = sprintStore((state) => state.setSprintActivo);
 
   const eliminarSprintById = (e: React.MouseEvent) => {
@@ -31,10 +31,10 @@ export const CardSprint: FC<ISprintList> = ({ sprint, handleOpenModalEdit }) => 
 
   return (
     <div className={styles.cardSprint}>
-      <h2 onClick={handleActivarSprint} className={styles.sprintTitle}>{sprint.titulo}</h2>
+      <h2 onClick={handleActivarSprint} className={styles.sprintTitle}>{sprint.nombre}</h2>
       <div className={styles.dateFields}>
         <p className={styles.dateField}>Inicio: {sprint.fechaInicio}</p>
-        <p className={styles.dateField}>Cierre: {sprint.fechaFin}</p>
+        <p className={styles.dateField}>Cierre: {sprint.fechaCierre}</p>
       </div>
       <div className={styles.iconsContainer}>
         <span 

@@ -17,6 +17,7 @@ export const useTareas = () => {
     const getTareas = async() =>{
         const data = await getAllTareas();
         if(data) setArrayTareas(data)
+            console.log(data)
     }
 
     const crearTarea = async (nuevaTarea: ITarea)=>{
