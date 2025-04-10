@@ -3,9 +3,7 @@ import { Header } from "../../ui/header/Header";
 import { ListTareas } from "../../ui/ListTareas/ListTareas";
 import SideBar from "../../ui/sideBar/SideBar";
 
-
 export const BackLogScreen = () => {
-
   return (
     <div>
       <Header/>

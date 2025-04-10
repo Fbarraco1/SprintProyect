@@ -3,6 +3,7 @@ import { ISprint } from "../../../types/ISprint";
 import styles from "./CardSprint.module.css";
 import { useSprint } from "../../../hooks/useSprint";
 import { sprintStore } from "../../../store/sprintStore";
+import { useNavigate } from "react-router-dom";
 
 type ISprintList = {
   sprint: ISprint;
@@ -12,7 +13,6 @@ type ISprintList = {
 export const CardSprint: FC<ISprintList> = ({ sprint, handleOpenModalEdit }) => {
   const { eliminarSprint } = useSprint();
   const setSprintActivo = sprintStore((state) => state.setSprintActivo);
-
   const eliminarSprintById = (e: React.MouseEvent) => {
     e.stopPropagation();
     e.preventDefault(); // Añadir esto para asegurar
@@ -25,8 +25,14 @@ export const CardSprint: FC<ISprintList> = ({ sprint, handleOpenModalEdit }) => 
     handleOpenModalEdit(sprint);
   };
 
+  const navigate = useNavigate();
+
   const handleActivarSprint = () => {
+    const sprintActivo = sprintStore.getState().sprintActivo;
+    if (sprintActivo?.id === sprint.id) return;
+    
     setSprintActivo(sprint);
+    navigate(`/sprint/${sprint.id}`);
   };
 
   return (
