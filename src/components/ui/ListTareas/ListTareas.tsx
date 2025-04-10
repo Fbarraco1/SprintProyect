@@ -4,12 +4,12 @@ import styles from "./ListTareas.module.css"
 import { CardList } from "../cardList/cardList";
 import { Modal } from "../ModalTarea/Modal";
 import { ITarea } from "../../../types/ITarea";
-import { useTareas } from "../../../hooks/useTareas";
+import { useTarea } from "../../../hooks/useTareas";
 
 export const ListTareas = () => {
 
     const setTareaActiva = tareaStore((state)=> state.setTareaActiva)
-    const {getTareas, tareas} = useTareas();
+    const {getTareas, tareas} = useTarea();
 
 
     useEffect(()=> {

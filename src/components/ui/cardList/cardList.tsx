@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { ITarea } from "../../../types/ITarea"
 import styles from "./cardList.module.css"
-import { useTareas } from "../../../hooks/useTareas"
+import { useTarea } from "../../../hooks/useTareas"
 
 type ICardList ={
     tarea: ITarea
@@ -10,7 +10,7 @@ type ICardList ={
 
 export const CardList: FC<ICardList>= ({tarea, handleOpenModalEdit}) => {
 
-    const{eliminarTarea} = useTareas()
+    const{eliminarTarea} = useTarea()
     const eliminarTareaByid = () =>{
         eliminarTarea(tarea.id!)
     }

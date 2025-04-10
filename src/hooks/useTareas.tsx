@@ -1,74 +1,73 @@
-import { useShallow } from "zustand/shallow"
-import { tareaStore } from "../store/backLogStore"
-import { editarTarea, eliminarTareaPorID, getAllTareas, postNuevaTarea } from "../http/tarea"
-import { ITarea } from "../types/ITarea"
-import Swal from "sweetalert2"
+import { ITarea } from "../types/ITarea";
 
-export const useTareas = () => {
-    const {tareas, setArrayTareas, agregarNuevaTarea, eliminarUnaTarea,editarUnaTarea } = tareaStore(
-        useShallow((state)=>({
-        tareas: state.tareas,
-        setArrayTareas: state.setArrayTareas,
-        agregarNuevaTarea: state.agregarNuevaTarea,
-        eliminarUnaTarea: state.eliminarUnaTarea,
-        editarUnaTarea: state.editarUnaTarea
-    })))        
+import { tareaStore } from "../store/backLogStore";
+import { createBackLogController, deleteBackLogController, getBackLogsController, updateBackLogController } from "../data/backLogController";
 
-    const getTareas = async() =>{
-        const data = await getAllTareas();
-        if(data) setArrayTareas(data)
-            console.log(data)
+export const useTarea = () => {
+  // Obtenemos los getters y setters del store
+  const tareas = tareaStore((state) => state.tareas);
+  const setArrayTareas = tareaStore((state) => state.setArrayTareas);
+  const agregarNuevaTarea = tareaStore((state) => state.agregarNuevaTarea);
+  const editarUnaTarea = tareaStore((state) => state.editarUnaTarea);
+  const eliminarUnaTarea = tareaStore((state) => state.eliminarUnaTarea);
+
+  // Función para obtener las tareas desde el controlador
+  const getTareas = async () => {
+    try {
+      const tareasData = await getBackLogsController();
+      if (tareasData) {
+        setArrayTareas(tareasData);
+      }
+      console.log("Tareas obtenidas:", tareasData);
+    } catch (error) {
+      console.error("Error al obtener tareas:", error);
     }
+  };
 
-    const crearTarea = async (nuevaTarea: ITarea)=>{
-        agregarNuevaTarea(nuevaTarea)
-        try {
-            await postNuevaTarea(nuevaTarea)
-            Swal.fire("Exito", "Tarea creada correctamente", "success")
-        } catch (error) {
-            console.log("Algo salio mal al crear tarea")
-            eliminarUnaTarea(nuevaTarea.id!)
-        }
+  // Función para crear una nueva tarea
+  const crearTarea = async (nuevaTarea: ITarea) => {
+    try {
+      const tareaCreada = await createBackLogController(nuevaTarea);
+      if (tareaCreada) {
+        agregarNuevaTarea(tareaCreada);
+        await getTareas(); // Actualiza el store con la lista completa
+      }
+      return tareaCreada;
+    } catch (error) {
+      console.error("Error al crear tarea:", error);
     }
+  };
 
-    const putTareaEditar = async (tareaEditada: ITarea)=>{
-        const estadoPrevio = tareas.find((el)=> el.id == tareaEditada.id);
+  // Función para editar una tarea existente
+  const putTareaEditar = async (tareaActualizada: ITarea) => {
+    try {
+      const tareaEditada = await updateBackLogController(tareaActualizada);
+      if (tareaEditada) {
         editarUnaTarea(tareaEditada);
-        try {
-            await editarTarea(tareaEditada)
-            Swal.fire("Exito", "Tarea editada correctamente", "success")
-
-        } catch (error) {
-            if (estadoPrevio) editarUnaTarea(estadoPrevio);
-            console.log("Algo salio mal al editar tarea")
-
-        }
+        await getTareas(); // Actualiza el store con la lista completa
+      }
+      return tareaEditada;
+    } catch (error) {
+      console.error("Error al editar tarea:", error);
     }
+  };
 
-    const eliminarTarea = async (idTarea: string)=>{
-        const estadoPrevio = tareas.find((el)=> el.id == idTarea);
-        const confirm = await Swal.fire({
-            title: "Estas seguro?",
-            text: "Esta accion no se puede deshacer",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonText: "Si, eliminar",
-            cancelButtonText: "Cancelar"
-        });
-
-        if(!confirm.isConfirmed) return;
-        eliminarTarea(idTarea)
-        try {
-            await eliminarTareaPorID(idTarea)
-            Swal.fire("Eliminado", "Tarea fue eliminada correctamente", "success")
-
-        } catch (error) {
-            if (estadoPrevio) agregarNuevaTarea(estadoPrevio);
-            console.log("Algo salio mal al editar")
-        }
+  // Función para eliminar una tarea
+  const eliminarTarea = async (idTarea: string) => {
+    try {
+      await deleteBackLogController(idTarea);
+      eliminarUnaTarea(idTarea);
+      await getTareas(); // Actualiza el store con la lista completa
+    } catch (error) {
+      console.error("Error al eliminar tarea:", error);
     }
+  };
+
   return {
-    getTareas,crearTarea,putTareaEditar,eliminarTarea, tareas,
-  }
-}
-
+    tareas,
+    getTareas,
+    crearTarea,
+    putTareaEditar,
+    eliminarTarea
+  };
+};
