@@ -11,7 +11,7 @@
 }
 
 .contentPopUp{
-    background-color: white;
+    background-color: grey;
     box-shadow: 5px 2px 10px #a19f9f;
     width: 35vw;
     display: flex;
@@ -28,18 +28,70 @@
     flex-direction: column;
     justify-content: space-around;
     gap: 1rem;
-
 }
 
-.formContent input, textarea{
+.formContent input, 
+.formContent textarea {
     width: 100%;
-    padding: 0.3rem;
+    padding: 0.5rem;
     resize: none;
-    margin: 0.4rem 0;
+    margin: 0.5rem 0;
+    color: black; /* Texto negro para mejor visibilidad */
+    background-color: #f0f0f0; /* Un gris claro para el fondo */
+    border: 1px solid #ccc; /* Un borde sutil */
+    border-radius: 0.4rem;
+    font-size: 1rem;
 }
+
+.formContent input:focus, 
+.formContent textarea:focus {
+    outline: none;
+    border-color: #888; /* Un color más oscuro al enfocar */
+    background-color: #fff; /* Un ligero cambio para indicar interacción */
+}
+
+body {
+    background-color: #808080; /* Gris del fondo general */
+    font-family: Arial, sans-serif; /* Fuente simple y elegante */
+}
+
+h2 {
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
 
 .buttonCard{
     display: flex;
     width: 100%;
     justify-content: space-around;
+}
+
+.buttonCard button {
+    color: white; /* Texto en blanco para mejor contraste */
+    background-color: #226C52; /* Verde oscuro */
+    border: none;
+    padding: 12px 18px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px; /* Bordes redondeados */
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 8px rgba(34, 108, 82, 0.3); /* Sombra suave */
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espacio si agregas un icono */
+}
+
+.buttonCard button:hover {
+    background-color: #1E563F; /* Un verde más oscuro para el hover */
+    color: #FFD700; /* Un amarillo dorado llamativo */
+    box-shadow: 0px 6px 12px rgba(34, 108, 82, 0.6); /* Sombra más intensa */
+    transform: scale(1.05); /* Efecto de agrandamiento */
+}
+
+.buttonCard button:active {
+    transform: scale(0.98); /* Pequeño efecto al hacer click */
 }
