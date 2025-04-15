@@ -3,8 +3,8 @@
     "tareas": [
       {
         "id": "dcec0ad4-31e0-4279-8ccf-72bd1f20b52d",
-        "titulo": "Tarea backlog",
-        "descripcion": "Descripcion tarea backlog",
+        "titulo": "Tarea backlog 1",
+        "descripcion": "tarea backlog",
         "estado": "pendiente",
         "fechaLimite": "2025-03-05"
       },
@@ -14,6 +14,13 @@
         "titulo": "Tarea Definitiva 1",
         "descripcion": "nashe",
         "fechaLimite": "2025-04-11"
+      },
+      {
+        "id": "Tue Apr 15 2025",
+        "estado": "",
+        "titulo": "Tarea Prueba 2",
+        "descripcion": "tarea de prueba",
+        "fechaLimite": "2025-04-16"
       }
     ]
   },
@@ -23,7 +30,7 @@
         "id": "b0e3f34b-68c6-49eb-b059-ab251ed81629",
         "fechaInicio": "2025-03-05",
         "fechaCierre": "2025-03-11",
-        "nombre": "Sprint 122",
+        "nombre": "Sprint 1",
         "tareas": [
           {
             "id": "50699dec-3d1a-45ff-a94d-82d416eac053",
@@ -35,19 +42,10 @@
         ]
       },
       {
-        "id": "m9bi9vo5zfc0cdpuvb",
-        "nombre": "Sprint 22",
-        "fechaInicio": "2025-04-11",
-        "fechaCierre": "2025-04-18",
-        "tareas": [
-          {
-            "id": "50699dec-3d1a-45ff-a94d-82d416eac053",
-            "titulo": "Tarea 2",
-            "descripcion": "Estamos aca",
-            "estado": "pendiente",
-            "fechaLimite": "2025-03-06"
-          }
-        ]
+        "id": "m9j3mmzpi8i304z2lik",
+        "nombre": "Sprint Prueba",
+        "fechaInicio": "2025-04-06",
+        "fechaCierre": "2025-04-25"
       }
     ]
   }

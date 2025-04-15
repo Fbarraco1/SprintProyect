@@ -7,7 +7,7 @@ export const getAllTareas = async () =>{
     try {
         const response = await axios.get<ITarea[]>(API_URL)
         console.log(response.data)
-        return response.data.tareas
+        return response.data
 
     } catch (error) {
         console.error("Error posting nuevaTarea:", error);
