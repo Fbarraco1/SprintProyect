@@ -11,16 +11,9 @@
       {
         "id": "Thu Apr 10 2025",
         "estado": "",
-        "titulo": "Tarea Definitiva 1",
+        "titulo": "Tarea Definitiva ",
         "descripcion": "nashe",
         "fechaLimite": "2025-04-11"
-      },
-      {
-        "id": "Tue Apr 15 2025",
-        "estado": "",
-        "titulo": "Tarea Prueba 2",
-        "descripcion": "tarea de prueba",
-        "fechaLimite": "2025-04-16"
       }
     ]
   },

@@ -1,22 +1,28 @@
 import { FC } from "react"
 import { ITarea } from "../../../types/ITarea"
 import styles from "./cardList.module.css"
-import { useTareas } from "../../../hooks/useTareas"
+import { useTarea } from "../../../hooks/useTareas"
+import { Eye, Forward, Pencil, Trash2 } from "lucide-react";
 
 type ICardList = {
     tarea: ITarea;
     handleOpenModalEdit: (tarea: ITarea) => void;    
 };
 
-export const CardList: FC<ICardList>= ({tarea, handleOpenModalEdit}) => {
+export const CardList: FC<ICardList> = ({ tarea, handleOpenModalEdit }) => {
+    const { eliminarTarea } = useTarea();
 
-    const{eliminarTarea} = useTareas()
-    const eliminarTareaByid = () =>{
-        eliminarTarea(tarea.id!)
-    }
-    const editarTarea = () =>{
-        handleOpenModalEdit(tarea)
-    }
+    const eliminarTareaByid = () => {
+        eliminarTarea(tarea.id!);
+    };
+
+    const editarTarea = () => {
+        handleOpenModalEdit(tarea);
+    };
+
+    const verTarea = () => {
+        handleOpenModalEdit(tarea);
+    };
 
     return (
         <div className={styles.containerCard}>
