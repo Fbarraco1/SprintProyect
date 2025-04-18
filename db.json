@@ -14,6 +14,13 @@
         "titulo": "Tarea Definitiva ",
         "descripcion": "nashe",
         "fechaLimite": "2025-04-11"
+      },
+      {
+        "id": "Wed Apr 16 2025",
+        "estado": "",
+        "titulo": "s",
+        "descripcion": "s",
+        "fechaLimite": "2025-04-13"
       }
     ]
   },
@@ -26,11 +33,18 @@
         "nombre": "Sprint 1",
         "tareas": [
           {
-            "id": "50699dec-3d1a-45ff-a94d-82d416eac053",
-            "titulo": "Tarea 2",
-            "descripcion": "Estamos aca",
-            "estado": "pendiente",
-            "fechaLimite": "2025-03-06"
+            "id": "m9k1zsh7ofrvmnegnbe",
+            "nombre": "Tarea5",
+            "descripcion": "Esta es una tarea",
+            "fechaCierre": "2025-04-25",
+            "estado": "pendiente"
+          },
+          {
+            "id": "m9k2gvem026hlmpuib47",
+            "nombre": "TArea Definitiva",
+            "descripcion": "TATATATATa",
+            "fechaCierre": "2025-04-26",
+            "estado": "pendiente"
           }
         ]
       },
