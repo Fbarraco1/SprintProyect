@@ -1,5 +1,6 @@
 import styles from "./sprintTaskCard.module.css";
 import { ITarea } from "../../../types/ITarea";
+import { Eye, Pencil, Trash2 } from "lucide-react";
 
 type Props = {
   tarea: ITarea;
@@ -16,9 +17,9 @@ export const SprintTaskCard = ({ tarea }: Props) => {
       <button className={styles.moveBtn}>Enviar a: Backlog</button>
 
       <div className={styles.icons}>
-        <span>👁️</span>
-        <span>✏️</span>
-        <span>🗑️</span>
+        <span><Eye size={20} /></span>
+        <span><Pencil size={20} /></span>
+        <span><Trash2 size={20} /></span>
       </div>
     </div>
   );

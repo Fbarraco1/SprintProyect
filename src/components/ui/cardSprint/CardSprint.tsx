@@ -4,6 +4,7 @@ import styles from "./CardSprint.module.css";
 import { useSprint } from "../../../hooks/useSprint";
 import { sprintStore } from "../../../store/sprintStore";
 import { useNavigate } from "react-router-dom";
+import { Eye, Pencil, Trash2 } from "lucide-react";
 
 type ISprintList = {
   sprint: ISprint;
@@ -45,16 +46,17 @@ export const CardSprint: FC<ISprintList> = ({ sprint, handleOpenModalEdit }) => 
       <div className={styles.iconsContainer}>
         <span 
           
-          className={styles.icon}>&#128065;</span>
+          className={styles.icon}><Eye size={20} /></span>
           
         <span 
           onClick={editarSprint} 
-          className={`${styles.icon} ${styles.editIcon}`}>&#9998;</span>
+          className={`${styles.icon} ${styles.editIcon}`}><Pencil size={20} /></span>
           
         <span 
           onClick={eliminarSprintById} 
-          className={`${styles.icon} ${styles.deleteIcon}`}>&#128465;</span>
+          className={`${styles.icon} ${styles.deleteIcon}`}><Trash2 size={20} /></span>
       </div>
+      
     </div>
   );
 };

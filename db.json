@@ -11,9 +11,16 @@
       {
         "id": "Thu Apr 10 2025",
         "estado": "",
-        "titulo": "Tarea Definitiva ",
-        "descripcion": "nashe",
+        "titulo": "Tarea Definitiva 1",
+        "descripcion": "pepe",
         "fechaLimite": "2025-04-11"
+      },
+      {
+        "id": "Wed Apr 16 2025",
+        "estado": "",
+        "titulo": "Tarea 2",
+        "descripcion": "aaaaaa",
+        "fechaLimite": "2025-04-17"
       }
     ]
   },

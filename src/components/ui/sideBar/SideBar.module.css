@@ -21,7 +21,7 @@
     padding: 10px;
     cursor: pointer;
     width: 50%;
-  }
+  } 
   
   .sprintSection {
     flex-grow: 1;
@@ -48,7 +48,7 @@
   
   
   .createSprintButton {
-    background-color: #28a745; /* Verde */
+    background-color: #226C52; /* Verde */
     color: white;
     border: none;
     border-radius: 5px;

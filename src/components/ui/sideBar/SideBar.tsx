@@ -5,9 +5,12 @@ import { ISprint } from "../../../types/ISprint";
 import { CardSprint } from "../cardSprint/CardSprint";
 import { ModalSprint } from "../ModalSprint/ModalSprint";
 import { useSprint } from "../../../hooks/useSprint"; // Importamos el hook
+import { useNavigate } from "react-router";
 
 const SideBar = () => {
   // Obtener funciones y estados de los sprints
+    const navigate = useNavigate();
+  
   const setSprintActivo = sprintStore((state) => state.setSprintActivo);
   const { getSprints, sprints } = useSprint();
 
@@ -29,10 +32,15 @@ const SideBar = () => {
     setSprintActivo(null); // Limpiamos el sprint activo al cerrar el modal
   };
 
+  const handleBackToBacklog = () => {
+    setSprintActivo(null);
+    navigate('/backlog');
+  };
+
   return (
     <div className={styles.sideBar}>
       <div className={styles.backlogButtonContainer}>
-        <button className={styles.backlogButton}>Backlog</button>
+        <button onClick={handleBackToBacklog} className={styles.backlogButton}>Backlog</button>
       </div>
       <div className={styles.sprintSection}>
         <h1 className={styles.sprintTitle}>Lista de Sprints</h1>
