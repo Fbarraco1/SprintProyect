@@ -1,12 +1,12 @@
 .sideBar {
     width: 25%;
-    height: 100vh; /* Altura completa de la pantalla */
     background-color: #f4f4f4; /* Puedes ajustar el color */
     display: flex;
     flex-direction: column;
     padding: 10px;
     background-color: #A5BED4;
   }
+  
   
   .backlogButtonContainer {
     text-align: center;
@@ -25,7 +25,7 @@
   
   .sprintSection {
     flex-grow: 1;
-    padding-top: 1rem;
+    padding-top: 0.4rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;

@@ -2,25 +2,13 @@
   "backlog": {
     "tareas": [
       {
-        "id": "dcec0ad4-31e0-4279-8ccf-72bd1f20b52d",
-        "titulo": "Tarea backlog 1",
-        "descripcion": "tarea backlog",
-        "estado": "pendiente",
-        "fechaLimite": "2025-03-05"
-      },
-      {
         "id": "Thu Apr 10 2025",
         "estado": "",
         "titulo": "Tarea Definitiva 1",
         "descripcion": "pepe",
-        "fechaLimite": "2025-04-11"
-      },
-      {
-        "id": "Wed Apr 16 2025",
-        "estado": "",
-        "titulo": "s",
-        "descripcion": "s",
-        "fechaLimite": "2025-04-13"
+        "fechaLimite": "2025-04-11",
+        "nombre": "Tarea Pepe 1",
+        "fechaCierre": "2025-04-22"
       }
     ]
   },
@@ -45,6 +33,13 @@
             "descripcion": "TATATATATa",
             "fechaCierre": "2025-04-26",
             "estado": "pendiente"
+          },
+          {
+            "id": "dcec0ad4-31e0-4279-8ccf-72bd1f20b52d",
+            "titulo": "Tarea backlog 1",
+            "descripcion": "tarea backlog",
+            "estado": "pendiente",
+            "fechaLimite": "2025-03-05"
           }
         ]
       },
@@ -52,7 +47,39 @@
         "id": "m9j3mmzpi8i304z2lik",
         "nombre": "Sprint Prueba",
         "fechaInicio": "2025-04-06",
-        "fechaCierre": "2025-04-25"
+        "fechaCierre": "2025-04-25",
+        "tareas": [
+          {
+            "id": "Mon Apr 21 2025",
+            "estado": "pendiente",
+            "nombre": "Enviar Tarea a Sprint",
+            "descripcion": "aaa",
+            "fechaCierre": "2025-04-30",
+            "fechaLimite": "2025-04-14"
+          }
+        ]
+      },
+      {
+        "id": "m9r4y4hcf6n4mc6fw5",
+        "nombre": "Crear Backend Ecommerce",
+        "fechaInicio": "2025-04-21",
+        "fechaCierre": "2025-04-21",
+        "tareas": [
+          {
+            "id": "m9r4z4vxl6q6g08605o",
+            "nombre": "El pepe",
+            "descripcion": "Ete setch",
+            "fechaCierre": "2025-04-22",
+            "estado": "pendiente"
+          },
+          {
+            "id": "Wed Apr 16 2025",
+            "estado": "",
+            "titulo": "s",
+            "descripcion": "s",
+            "fechaLimite": "2025-04-13"
+          }
+        ]
       }
     ]
   }

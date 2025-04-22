@@ -1,5 +1,5 @@
-.containerPrincipalModal{
-    position: absolute;
+.containerPrincipalModal {
+    position: fixed;
     top: 0;
     left: 0;
     display: flex;
@@ -7,39 +7,112 @@
     align-items: center;
     width: 100vw;
     height: 100vh;
-    backdrop-filter: brightness(90%) blur(2px);
+    backdrop-filter: brightness(90%) blur(3px);
+    z-index: 1000;
 }
 
-.contentPopUp{
-    background-color: white;
-    box-shadow: 5px 2px 10px #a19f9f;
+.contentPopUp {
+    background-color: #F5F7FA;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
     width: 35vw;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.2rem;
     align-items: center;
     justify-content: space-around;
-    padding: 1rem;
-    border-radius: 0.4rem;
+    padding: 1.5rem;
+    border-radius: 15px;
+    border-top: 5px solid #A5BED4;
 }
 
-.formContent{
+.formContent {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    gap: 1rem;
-
-}
-
-.formContent input, textarea{
+    gap: 1.2rem;
     width: 100%;
-    padding: 0.3rem;
-    resize: none;
-    margin: 0.4rem 0;
 }
 
-.buttonCard{
+.formContent label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.2rem;
+}
+
+.formContent input, 
+.formContent textarea {
+    width: 100%;
+    padding: 0.7rem;
+    resize: none;
+    margin: 0.2rem 0 0.8rem;
+    border: 1px solid #A5BED4;
+    border-radius: 5px;
+    background-color: white;
+    font-size: 0.95rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.formContent input:focus, 
+.formContent textarea:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.buttonCard {
     display: flex;
     width: 100%;
     justify-content: space-around;
+    margin-top: 1rem;
+}
+
+.buttonCard button {
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
+    border: none;
+}
+
+.buttonCard button:hover {
+    transform: translateY(-2px);
+}
+
+/* Botón principal (Guardar/Aceptar) */
+.buttonCard button:first-child {
+    background-color:#ff1919; 
+    color: white;
+}
+
+.buttonCard button:first-child:hover {
+    background-color: #7a2222;
+}
+
+/* Botón secundario (Cancelar) */
+.buttonCard button:last-child {
+    background-color: #007bff;
+    color: white;
+}
+
+.buttonCard button:last-child:hover {
+    background-color: #0056b3;
+}
+
+/* Título del modal si lo tienes */
+.contentPopUp h2 {
+    color: #226C52;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+/* Animación de entrada del modal */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.contentPopUp {
+    animation: fadeIn 0.3s ease-out forwards;
 }

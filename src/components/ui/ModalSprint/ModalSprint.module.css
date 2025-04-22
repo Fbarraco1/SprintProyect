@@ -1,5 +1,5 @@
-.containerPrincipalModal{
-    position: absolute;
+.containerPrincipalModal {
+    position: fixed;
     top: 0;
     left: 0;
     display: flex;
@@ -7,92 +7,153 @@
     align-items: center;
     width: 100vw;
     height: 100vh;
-    backdrop-filter: brightness(90%) blur(2px);
+    backdrop-filter: brightness(90%) blur(3px);
     z-index: 100000000;
 }
 
-.contentPopUp{
-    background-color: grey;
-    box-shadow: 5px 2px 10px #a19f9f;
+.contentPopUp {
+    background-color: #F5F7FA;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
     width: 35vw;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.2rem;
     align-items: center;
     justify-content: space-around;
-    padding: 1rem;
-    border-radius: 0.4rem;
+    padding: 1.5rem;
+    border-radius: 15px;
+    border-top: 5px solid #A5BED4;
+    animation: slideInModal 0.3s ease-out forwards;
 }
 
-.formContent{
+@keyframes slideInModal {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.formContent {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    gap: 1rem;
+    gap: 1.2rem;
+    width: 100%;
+}
+
+.formContent label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.3rem;
+    display: block;
 }
 
 .formContent input, 
 .formContent textarea {
     width: 100%;
-    padding: 0.5rem;
+    padding: 0.7rem;
     resize: none;
-    margin: 0.5rem 0;
-    color: black; /* Texto negro para mejor visibilidad */
-    background-color: #f0f0f0; /* Un gris claro para el fondo */
-    border: 1px solid #ccc; /* Un borde sutil */
-    border-radius: 0.4rem;
+    margin: 0.3rem 0 0.8rem;
+    color: #333;
+    background-color: white;
+    border: 1px solid #A5BED4;
+    border-radius: 8px;
     font-size: 1rem;
+    transition: all 0.3s ease;
 }
 
 .formContent input:focus, 
 .formContent textarea:focus {
     outline: none;
-    border-color: #888; /* Un color más oscuro al enfocar */
-    background-color: #fff; /* Un ligero cambio para indicar interacción */
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(165, 190, 212, 0.3);
+    background-color: #fff;
 }
 
 body {
-    background-color: #808080; /* Gris del fondo general */
-    font-family: Arial, sans-serif; /* Fuente simple y elegante */
+    background-color: #F5F7FA;
+    font-family: Arial, sans-serif;
 }
 
 h2 {
     text-align: center;
-    color: black;
+    color: #226C52;
     font-weight: bold;
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
+    font-size: 1.5rem;
 }
 
-
-.buttonCard{
+.buttonCard {
     display: flex;
     width: 100%;
     justify-content: space-around;
+    margin-top: 1rem;
+    gap: 1rem;
 }
 
-.buttonCard button {
-    color: white; /* Texto en blanco para mejor contraste */
-    background-color: #226C52; /* Verde oscuro */
+/* Botón principal */
+.buttonCard button:first-child {
+    color: white;
+    background-color:#ff1919;
     border: none;
-    padding: 12px 18px;
+    padding: 12px 20px;
     font-size: 16px;
-    font-weight: bold;
-    border-radius: 8px; /* Bordes redondeados */
+    font-weight: 600;
+    border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    box-shadow: 0px 4px 8px rgba(34, 108, 82, 0.3); /* Sombra suave */
+    box-shadow: 0px 4px 8px rgba(34, 108, 82, 0.2);
     display: flex;
     align-items: center;
-    gap: 8px; /* Espacio si agregas un icono */
+    gap: 8px;
+    flex: 1;
+    justify-content: center;
 }
 
-.buttonCard button:hover {
-    background-color: #1E563F; /* Un verde más oscuro para el hover */
-    color: #FFD700; /* Un amarillo dorado llamativo */
-    box-shadow: 0px 6px 12px rgba(34, 108, 82, 0.6); /* Sombra más intensa */
-    transform: scale(1.05); /* Efecto de agrandamiento */
+.buttonCard button:first-child:hover {
+    background-color:  #7a2222;
+    box-shadow: 0px 6px 12px rgba(34, 108, 82, 0.4);
+    transform: translateY(-2px);
 }
 
-.buttonCard button:active {
-    transform: scale(0.98); /* Pequeño efecto al hacer click */
+.buttonCard button:first-child:active {
+    transform: translateY(0);
+}
+
+/* Botón secundario (cancelar) */
+.buttonCard button:last-child {
+    color: white;
+    background-color: #007bff;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 8px rgba(0, 123, 255, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    justify-content: center;
+}
+
+.buttonCard button:last-child:hover {
+    background-color: #0056b3;
+    box-shadow: 0px 6px 12px rgba(0, 123, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.buttonCard button:last-child:active {
+    transform: translateY(0);
+}
+
+/* Diseño responsivo */
+@media (max-width: 768px) {
+    .contentPopUp {
+        width: 80vw;
+    }
+    
+    .buttonCard {
+        flex-direction: column;
+    }
 }

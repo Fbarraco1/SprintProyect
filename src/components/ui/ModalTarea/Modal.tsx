@@ -51,9 +51,9 @@ export const Modal :FC<IModal>= ({handleCloseModal}) => {
             </div>
             <form onSubmit={handleSubmit} className={style.formContent}>
                 <div>
-                    <input placeholder="Ingrese un titulo" onChange={handleChange} type="text" required value={formValues.nombre} autoComplete="off" name='titulo'/>
+                    <input placeholder="Ingrese un titulo" onChange={handleChange} type="text" required value={formValues.nombre} autoComplete="off" name='nombre'/>
                     <textarea placeholder="Ingrese una descripcion" onChange={handleChange} required value={formValues.descripcion} name="descripcion"></textarea>
-                    <input type="date" onChange={handleChange} required value={formValues.fechaCierre} autoComplete="off" name='fechaLimite'/>
+                    <input type="date" onChange={handleChange} required value={formValues.fechaCierre} autoComplete="off" name='fechaCierre'/>
                 </div>
                 <div className={style.buttonCard}>
                     <button onClick={handleCloseModal}>Cancelar</button>
