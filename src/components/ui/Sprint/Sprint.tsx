@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { ISprint } from "../../../types/ISprint"; // Asegúrate de que ISprint esté correctamente definido
+import { ISprint } from "../../../types/ISprint"; 
 import { ModalSprint } from "../ModalTareaSprint/ModalSprint";
 import { SprintTaskCard } from "../sprintTaskCard/SprintTaskCard";
 import styles from "./Sprint.module.css";
 import { updateSprintController } from "../../../data/sprintController";
+import { sprintStore } from "../../../store/sprintStore";
 
 type IPropsSprint = {
   sprint: ISprint;
@@ -11,30 +12,34 @@ type IPropsSprint = {
 
 export const Sprint = ({ sprint }: IPropsSprint) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [sprintData, setSprintData] = useState<ISprint>(sprint); // Estado local para el sprint
+  // Traer el sprint actualizado desde el store
+  const sprintData = sprintStore((state) =>
+    state.sprints.find((s) => s.id === sprint.id)
+  );
+
+  const updateSprint = sprintStore((state) => state.editarUnSprint);
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
 
-  const handleCloseModal = () => {
+  const handleCloseModal = () => {  
     setIsModalOpen(false);
   };
 
   const handleAddTask = async (newTask: any) => {
-    // Actualizar el estado local del sprint
-    setSprintData((prevSprint) => {
-      const updatedSprint = {
-        ...prevSprint,
-        tareas: [...(prevSprint.tareas ?? []), newTask],
-      };
+    if (!sprintData) return;
 
-      // Actualizar el sprint en la base de datos
-      updateSprintController(updatedSprint);
+    const updatedSprint = {
+      ...sprintData,
+      tareas: [...(sprintData.tareas ?? []), newTask],
+    };
 
-      return updatedSprint;
-    });
+    updateSprint(updatedSprint); // actualiza en Zustand
+    await updateSprintController(updatedSprint); // y opcionalmente en la BD
   };
+
+  if (!sprintData) return <p>Sprint no encontrado</p>;
 
   return (
     <div className={styles.sprintScreen}>

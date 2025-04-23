@@ -4,11 +4,19 @@ import { Sprint } from "../../ui/Sprint/Sprint";
 import styles from "./SprintScreen.module.css";
 import { Header } from "../../ui/header/Header";
 import SideBar from "../../ui/sideBar/SideBar";
+import { useEffect, useState } from "react";
+import { ISprint } from "../../../types/ISprint";
 
 export const SprintScreen = () => {
   const { id } = useParams();
   const { sprints } = useSprint();
-  const sprint = sprints.find((s) => s.id === id);
+  const [sprint, setSprint] = useState<ISprint| null>(null);
+  useEffect(() => {
+    const data =sprints.find((s) => s.id === id)
+    console.log(id)
+    if (data)setSprint(data);
+    console.log(data)
+  },[id]);
 
   return (
     <div>

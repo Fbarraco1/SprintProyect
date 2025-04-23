@@ -25,6 +25,7 @@ export const ListTareas = () => {
 
     const handleCloseModal = () => {
         setOpenModalTarea(false);
+        
     }
 
 

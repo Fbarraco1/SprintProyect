@@ -7,7 +7,7 @@
         "titulo": "Tarea Definitiva 1",
         "descripcion": "pepe",
         "fechaLimite": "2025-04-11",
-        "nombre": "Tarea Pepe 11",
+        "nombre": "Tarea Pepe 1",
         "fechaCierre": "2025-04-22"
       }
     ]
@@ -56,6 +56,13 @@
             "descripcion": "aaa",
             "fechaCierre": "2025-04-30",
             "fechaLimite": "2025-04-14"
+          },
+          {
+            "id": "2025-04-23T13:44:17.659Z",
+            "estado": "pendiente",
+            "nombre": "Tarea 2025",
+            "descripcion": "tarea clase miercoles",
+            "fechaCierre": "2025-04-23"
           }
         ]
       },

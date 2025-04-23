@@ -1,12 +1,10 @@
-import { ChangeEvent, FC, FormEvent, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { tareaStore } from "../../../store/backLogStore";
 import style from "./Modal.module.css";
 import { ITarea } from "../../../types/ITarea";
 import { useTarea } from "../../../hooks/useTareas";
 
-type IModal = {
-  handleCloseModal: VoidFunction;
-};
+
 
 const initialState: ITarea = {
   id: "",
@@ -15,37 +13,49 @@ const initialState: ITarea = {
   descripcion: "",
   fechaCierre: "",
 };
+// Define the IModal interface
+interface IModal {
+  handleCloseModal: () => void;
+}
 
-export const Modal: FC<IModal> = ({ handleCloseModal }) => {
-  const tareaActiva = tareaStore((state) => state.tareaActiva);
-  const setTareaActiva = tareaStore((state) => state.setTareaActiva);
-  const { crearTarea, putTareaEditar } = useTarea();
 
-  const [formValues, setFormValues] = useState<ITarea>(initialState);
-
-  useEffect(() => {
-    if (tareaActiva) {
-      setFormValues(tareaActiva);
-    } else {
-      setFormValues(initialState); // limpia el formulario al crear nueva tarea
-    }
-  }, [tareaActiva]);
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormValues((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    if (tareaActiva) {
-      putTareaEditar(formValues);
-    } else {
-      crearTarea({ ...formValues, id: new Date().toISOString() });
-    }
-    setTareaActiva(null);
-    handleCloseModal();
-  };
+export const Modal = ({ handleCloseModal }: IModal) => {
+    const tareaActiva = tareaStore((state) => state.tareaActiva);
+    const setTareaActiva = tareaStore((state) => state.setTareaActiva);
+    const { crearTarea, putTareaEditar } = useTarea();
+  
+    const [formValues, setFormValues] = useState<ITarea>(initialState);
+  
+    useEffect(() => {
+      if (tareaActiva) {
+        setFormValues(tareaActiva);
+      } else {
+        setFormValues(initialState); // limpia el formulario al crear nueva tarea
+      }
+    }, [tareaActiva]);
+  
+    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const { name, value } = e.target;
+      setFormValues((prev) => ({ ...prev, [name]: value }));
+    };
+  
+    const handleSubmit = (e: FormEvent) => {
+      e.preventDefault();
+      if (tareaActiva) {
+        putTareaEditar(formValues);
+      } else {
+        crearTarea({ ...formValues, id: new Date().toISOString() });
+      }
+      handleClose(); 
+    };
+  
+    const handleClose = () => {
+      setFormValues(initialState); // resetea el formulario primero
+      setTareaActiva(null);
+      handleCloseModal();
+      
+    };
+    
 
   return (
     <div className={style.containerPrincipalModal}>
@@ -81,7 +91,7 @@ export const Modal: FC<IModal> = ({ handleCloseModal }) => {
             />
           </div>
           <div className={style.buttonCard}>
-            <button type="button" onClick={handleCloseModal}>
+            <button type="button" onClick={handleClose}>
               Cancelar
             </button>
             <button type="submit">
