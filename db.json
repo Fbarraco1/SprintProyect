@@ -7,7 +7,7 @@
         "titulo": "Tarea Definitiva 1",
         "descripcion": "pepe",
         "fechaLimite": "2025-04-11",
-        "nombre": "Tarea Pepe 1",
+        "nombre": "Tarea Pepe 11",
         "fechaCierre": "2025-04-22"
       }
     ]
@@ -78,6 +78,13 @@
             "titulo": "s",
             "descripcion": "s",
             "fechaLimite": "2025-04-13"
+          },
+          {
+            "id": "Tue Apr 22 2025",
+            "estado": "pendiente",
+            "nombre": "Terminar proyecto",
+            "descripcion": "Hay q terminar la logica",
+            "fechaCierre": "2025-04-23"
           }
         ]
       }
