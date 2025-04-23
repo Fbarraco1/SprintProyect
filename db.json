@@ -92,6 +92,13 @@
             "nombre": "Terminar proyecto",
             "descripcion": "Hay q terminar la logica",
             "fechaCierre": "2025-04-23"
+          },
+          {
+            "id": "m9uioy93swvufdh0gap",
+            "nombre": "qaaaa",
+            "descripcion": "adsadsa",
+            "fechaCierre": "2025-04-24",
+            "estado": "pendiente"
           }
         ]
       }

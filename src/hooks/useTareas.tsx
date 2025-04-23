@@ -68,6 +68,7 @@ export const useTarea = () => {
     getTareas,
     crearTarea,
     putTareaEditar,
-    eliminarTarea
+    eliminarTarea,
+    agregarNuevaTarea
   };
 };
