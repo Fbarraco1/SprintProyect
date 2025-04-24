@@ -8,6 +8,7 @@ import { sprintStore } from "../../../store/sprintStore";
 import { ModalSprint } from "../ModalTareaSprint/ModalTareaSprint";
 import { useTarea } from "../../../hooks/useTareas";
 import { ModalVerTarea } from "../modalVerTarea/ModalVerTarea";
+import Swal from "sweetalert2";
 
 type Props = {
   tarea: ITarea;
@@ -17,6 +18,8 @@ export const SprintTaskCard = ({ tarea }: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isVerTareaOpen, setIsVerTareaOpen] = useState(false);
   const [mostrarOpciones, setmostrarOpciones] = useState(false);
+
+  const { crearTarea } = useTarea();
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -55,10 +58,26 @@ export const SprintTaskCard = ({ tarea }: Props) => {
       }
 
       await eliminarTareaSprint(sprintActivoId, tarea);
+      Swal.fire("Tarea eliminada", "La Tarea se ha eliminado correctamente", "success");
     } catch (error) {
       console.error("Error al eliminar la tarea del sprint:", error);
     }
   };
+
+  const handleEnviarAlBacklog = async () => {
+    try {
+      if (!sprintActivoId) {
+        console.error("El ID del sprint activo no está definido.");
+        return;
+      }
+
+      await eliminarTareaSprint(sprintActivoId, tarea);
+      await crearTarea({ ...tarea, id: new Date().toISOString() });
+      Swal.fire("Tarea enviada al Backlog", "La Tarea se ha enviado correctamente", "success");
+    } catch (error) {
+      console.error("Error al enviar la tarea al Backlog:", error);
+    }
+  }
 
   const handleVerTarea = () => {
     setIsVerTareaOpen(true);
@@ -86,7 +105,7 @@ export const SprintTaskCard = ({ tarea }: Props) => {
         )}
       </div>
 
-      <button className={styles.moveBtn}>Enviar a: Backlog</button>
+      <button onClick={handleEnviarAlBacklog} className={styles.moveBtn}>Enviar a: Backlog</button>
 
       <div className={styles.icons}>
         <span onClick={handleVerTarea}><Eye size={20} /></span>

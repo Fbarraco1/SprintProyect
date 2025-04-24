@@ -6,6 +6,7 @@ import { deleteBackLogController } from "../../../data/backLogController";
 import { ITarea } from "../../../types/ITarea";
 import styles from "./sprintSelector.module.css";
 import { Forward } from "lucide-react";
+import { ISprint } from "../../../types/ISprint";
 
 interface SprintSelectorProps {
     tarea: ITarea;
@@ -17,7 +18,7 @@ export const SprintSelector: React.FC<SprintSelectorProps> = ({ tarea, onSuccess
     // Solución: Usar el selector de Zustand correctamente
     const sprints = sprintStore(state => state.sprints);
     const eliminarUnaTarea = tareaStore(state => state.eliminarUnaTarea);
-
+    
     const [selectedSprint, setSelectedSprint] = useState<string>("");
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -29,17 +30,25 @@ export const SprintSelector: React.FC<SprintSelectorProps> = ({ tarea, onSuccess
 
         // Encontrar el sprint seleccionado
         const sprint = sprints.find((s) => s.id === selectedSprint);
-        if (!sprint) return;
+        if (!sprint) {
+            console.error("No se encontró el sprint seleccionado.");
+            return;
+        }
+
+        // Modificar la tarea para que su estado sea "pendiente"
+        const tareaModificada: ITarea = { ...tarea, estado: "pendiente" };
 
         try {
             // Crear una copia del sprint con la tarea agregada
-            const sprintActualizado = {
+            const sprintActualizado: ISprint = {
                 ...sprint,
-                tareas: sprint.tareas ? [...sprint.tareas, tarea] : [tarea],
+                tareas: sprint.tareas ? [...sprint.tareas, tareaModificada] : [tareaModificada],
             };
 
-            // Actualizar el sprint en la API y eliminar la tarea del Backlog
+            // Actualizar el sprint en la API
             await updateSprintController(sprintActualizado);
+
+            // Eliminar la tarea del Backlog
             await deleteBackLogController(tarea.id!);
 
             // Actualizar el estado global (Zustand)

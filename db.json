@@ -2,41 +2,11 @@
   "backlog": {
     "tareas": [
       {
-        "id": "Thu Apr 10 2025",
-        "estado": "",
-        "titulo": "Tarea Definitiva 1",
-        "descripcion": "pepe",
-        "fechaLimite": "2025-04-11",
-        "nombre": "Tarea Pepe 1",
-        "fechaCierre": "2025-04-22"
-      },
-      {
         "id": "2025-04-24T03:35:37.854Z",
         "estado": "pendiente",
-        "nombre": "YUP32",
+        "nombre": "YUP323",
         "descripcion": "Haciendo implementacion",
         "fechaCierre": "2025-04-24"
-      },
-      {
-        "id": "2025-04-24T15:13:08.407Z",
-        "estado": "pendiente",
-        "nombre": "kkkkkkkkkk",
-        "descripcion": "kkkkkkkkkk",
-        "fechaCierre": "2025-05-04"
-      },
-      {
-        "id": "2025-04-24T15:28:12.701Z",
-        "estado": "pendiente",
-        "nombre": "JAJAJAJAJJA",
-        "descripcion": "kkkkkkkkkkkkk",
-        "fechaCierre": "2025-04-18"
-      },
-      {
-        "id": "2025-04-24T15:34:01.377Z",
-        "estado": "pendiente",
-        "nombre": "TAREALISTALISTOSA",
-        "descripcion": "55555555555",
-        "fechaCierre": "2025-05-03"
       }
     ]
   },
@@ -81,36 +51,6 @@
         ]
       },
       {
-        "id": "m9j3mmzpi8i304z2lik",
-        "nombre": "Sprint Prueba",
-        "fechaInicio": "2025-04-06",
-        "fechaCierre": "2025-04-25",
-        "tareas": [
-          {
-            "id": "Mon Apr 21 2025",
-            "estado": "completada",
-            "nombre": "Enviar Tarea a Sprint",
-            "descripcion": "aaa",
-            "fechaCierre": "2025-04-30",
-            "fechaLimite": "2025-04-14"
-          },
-          {
-            "id": "2025-04-23T13:44:17.659Z",
-            "estado": "pendiente",
-            "nombre": "Tarea 2025",
-            "descripcion": "tarea clase miercoles",
-            "fechaCierre": "2025-04-23"
-          },
-          {
-            "id": "m9vgnpjrshdloodm46",
-            "nombre": "Tarea25",
-            "descripcion": "Hacer tareas",
-            "fechaCierre": "2025-04-27",
-            "estado": "en progreso"
-          }
-        ]
-      },
-      {
         "id": "m9r4y4hcf6n4mc6fw5",
         "nombre": "Crear Backend Ecommerce",
         "fechaInicio": "2025-04-21",
@@ -136,20 +76,6 @@
             "nombre": "Terminar proyecto",
             "descripcion": "Hay q terminar la logica",
             "fechaCierre": "2025-04-23"
-          },
-          {
-            "id": "m9uioy93swvufdh0gap",
-            "nombre": "qaaaa",
-            "descripcion": "adsadsa",
-            "fechaCierre": "2025-04-24",
-            "estado": "pendiente"
-          },
-          {
-            "id": "2025-04-24T15:28:30.837Z",
-            "estado": "completada",
-            "nombre": "hhhhhhhhhhhhh",
-            "descripcion": "ggggggggggggggg",
-            "fechaCierre": "2025-04-04"
           }
         ]
       }

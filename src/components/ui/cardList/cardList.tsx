@@ -5,6 +5,7 @@ import { useTarea } from "../../../hooks/useTareas";
 import { Eye, Pencil, Trash2 } from "lucide-react";
 import { SprintSelector } from "../SprintSelector/SprintSelector";
 import { ModalVerTarea } from "../modalVerTarea/ModalVerTarea";
+import Swal from "sweetalert2";
 
 type ICardList = {
   tarea: ITarea;
@@ -17,6 +18,8 @@ export const CardList: FC<ICardList> = ({ tarea, handleOpenModalEdit }) => {
 
   const eliminarTareaByid = () => {
     eliminarTarea(tarea.id!);
+    Swal.fire("Tarea eliminada", "La Tarea se ha eliminado correctamente", "success");
+    
   };
 
   const editarTarea = () => {

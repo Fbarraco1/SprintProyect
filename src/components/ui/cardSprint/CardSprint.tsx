@@ -6,6 +6,7 @@ import { sprintStore } from "../../../store/sprintStore";
 import { useNavigate } from "react-router-dom";
 import { Eye, Pencil, Trash2 } from "lucide-react";
 import { VerSprintModal } from "../modalVerSprint/ModalVerSprint";
+import Swal from "sweetalert2";
 
 type ISprintList = {
   sprint: ISprint;
@@ -23,6 +24,8 @@ export const CardSprint: FC<ISprintList> = ({ sprint, handleOpenModalEdit }) => 
     e.stopPropagation();
     e.preventDefault();
     eliminarSprint(sprint.id!);
+    Swal.fire("Tarea eliminada", "La Tarea se ha eliminado correctamente", "success");
+    
   };
 
   const editarSprint = () => {
