@@ -157,3 +157,20 @@ h2 {
         flex-direction: column;
     }
 }
+
+.errorMsg {
+    color: #e63946; /* rojo moderno y suave */
+    font-size: 0.85rem;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-top: 0.2rem; /* más pegado al input */
+    margin-bottom: 0.3rem; /* espacio con el siguiente input */
+    padding-left: 0.25rem;
+    display: block;
+    word-break: break-word;
+}
+
+.errorMsg::before {
+    content: "⚠ ";
+    font-size: 0.85rem;
+}
