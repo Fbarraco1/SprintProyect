@@ -9,6 +9,13 @@
         "fechaLimite": "2025-04-11",
         "nombre": "Tarea Pepe 1",
         "fechaCierre": "2025-04-22"
+      },
+      {
+        "id": "2025-04-24T03:35:37.854Z",
+        "estado": "pendiente",
+        "nombre": "YUP32",
+        "descripcion": "Haciendo implementacion",
+        "fechaCierre": "2025-04-24"
       }
     ]
   },

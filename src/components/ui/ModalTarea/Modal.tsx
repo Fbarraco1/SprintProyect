@@ -85,26 +85,35 @@ export const Modal = ({ handleCloseModal }: IModal) => {
               placeholder="Ingrese un título"
               onChange={handleChange}
               type="text"
-              required
               value={formValues.nombre}
               autoComplete="off"
               name="nombre"
             />
+             {formErrors.nombre && (
+              <span className={style.errorMsg}>{formErrors.nombre}</span>
+            )}
+
             <textarea
               placeholder="Ingrese una descripción"
               onChange={handleChange}
-              required
               value={formValues.descripcion}
               name="descripcion"
             />
+            {formErrors.descripcion && (
+              <span className={style.errorMsg}>{formErrors.descripcion}</span>
+            )}
+
             <input
               type="date"
               onChange={handleChange}
-              required
               value={formValues.fechaCierre}
               autoComplete="off"
               name="fechaCierre"
             />
+            {formErrors.fechaCierre && (
+              <span className={style.errorMsg}>{formErrors.fechaCierre}</span>
+            )}
+
           </div>
           <div className={style.buttonCard}>
             <button type="button" onClick={handleClose}>
