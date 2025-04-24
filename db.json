@@ -30,13 +30,6 @@
         "nombre": "JAJAJAJAJJA",
         "descripcion": "kkkkkkkkkkkkk",
         "fechaCierre": "2025-04-18"
-      },
-      {
-        "id": "2025-04-24T15:34:01.377Z",
-        "estado": "pendiente",
-        "nombre": "TAREALISTALISTOSA",
-        "descripcion": "55555555555",
-        "fechaCierre": "2025-05-03"
       }
     ]
   },
@@ -70,13 +63,6 @@
             "fechaLimite": "2025-03-05",
             "nombre": "JAmonn",
             "fechaCierre": "2025-04-12"
-          },
-          {
-            "id": "m9vhv3l4pgjlz9m1iy",
-            "nombre": "YupTarea",
-            "descripcion": "kkkkkkkkkkkkkkkkkkkkk",
-            "fechaCierre": "2025-04-19",
-            "estado": "en progreso"
           }
         ]
       },
@@ -111,47 +97,10 @@
         ]
       },
       {
-        "id": "m9r4y4hcf6n4mc6fw5",
-        "nombre": "Crear Backend Ecommerce",
-        "fechaInicio": "2025-04-21",
-        "fechaCierre": "2025-04-21",
-        "tareas": [
-          {
-            "id": "m9r4z4vxl6q6g08605o",
-            "nombre": "El pepe",
-            "descripcion": "Ete setch",
-            "fechaCierre": "2025-04-22",
-            "estado": "en progreso"
-          },
-          {
-            "id": "Wed Apr 16 2025",
-            "estado": "",
-            "titulo": "s",
-            "descripcion": "s",
-            "fechaLimite": "2025-04-13"
-          },
-          {
-            "id": "Tue Apr 22 2025",
-            "estado": "pendiente",
-            "nombre": "Terminar proyecto",
-            "descripcion": "Hay q terminar la logica",
-            "fechaCierre": "2025-04-23"
-          },
-          {
-            "id": "m9uioy93swvufdh0gap",
-            "nombre": "qaaaa",
-            "descripcion": "adsadsa",
-            "fechaCierre": "2025-04-24",
-            "estado": "pendiente"
-          },
-          {
-            "id": "2025-04-24T15:28:30.837Z",
-            "estado": "completada",
-            "nombre": "hhhhhhhhhhhhh",
-            "descripcion": "ggggggggggggggg",
-            "fechaCierre": "2025-04-04"
-          }
-        ]
+        "id": "m9vya26rt4skg1ew0b7",
+        "nombre": "Subir Video Final",
+        "fechaInicio": "2025-04-08",
+        "fechaCierre": "2025-05-08"
       }
     ]
   }

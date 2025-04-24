@@ -6,6 +6,7 @@ import { sprintStore } from "../../../store/sprintStore";
 import { useNavigate } from "react-router-dom";
 import { Eye, Pencil, Trash2 } from "lucide-react";
 import { VerSprintModal } from "../modalVerSprint/ModalVerSprint";
+import Swal from "sweetalert2";
 
 type ISprintList = {
   sprint: ISprint;
@@ -22,7 +23,35 @@ export const CardSprint: FC<ISprintList> = ({ sprint, handleOpenModalEdit }) => 
   const eliminarSprintById = (e: React.MouseEvent) => {
     e.stopPropagation();
     e.preventDefault();
-    eliminarSprint(sprint.id!);
+    
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: `¿Deseas eliminar el sprint "${sprint.nombre}"?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        try {
+          eliminarSprint(sprint.id!);
+          Swal.fire(
+            '¡Eliminado!',
+            'El sprint ha sido eliminado correctamente.',
+            'success'
+          );
+        } catch (error) {
+          console.error("Error al eliminar el sprint:", error);
+          Swal.fire(
+            'Error',
+            'No se pudo eliminar el sprint.',
+            'error'
+          );
+        }
+      }
+    });
   };
 
   const editarSprint = () => {
@@ -70,4 +99,3 @@ export const CardSprint: FC<ISprintList> = ({ sprint, handleOpenModalEdit }) => 
     </>
   );
 };
-  

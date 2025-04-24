@@ -8,6 +8,7 @@ import { sprintStore } from "../../../store/sprintStore";
 import { ModalSprint } from "../ModalTareaSprint/ModalTareaSprint";
 import { useTarea } from "../../../hooks/useTareas";
 import { ModalVerTarea } from "../modalVerTarea/ModalVerTarea";
+import Swal from "sweetalert2";
 
 type Props = {
   tarea: ITarea;
@@ -48,16 +49,40 @@ export const SprintTaskCard = ({ tarea }: Props) => {
   };
 
   const handleEliminarTarea = async () => {
-    try {
-      if (!sprintActivoId) {
-        console.error("El ID del sprint activo no está definido.");
-        return;
-      }
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: `¿Deseas eliminar la tarea "${tarea.nombre}"?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          if (!sprintActivoId) {
+            console.error("El ID del sprint activo no está definido.");
+            return;
+          }
 
-      await eliminarTareaSprint(sprintActivoId, tarea);
-    } catch (error) {
-      console.error("Error al eliminar la tarea del sprint:", error);
-    }
+          await eliminarTareaSprint(sprintActivoId, tarea);
+          
+          Swal.fire(
+            '¡Eliminada!',
+            'La tarea ha sido eliminada correctamente.',
+            'success'
+          );
+        } catch (error) {
+          console.error("Error al eliminar la tarea del sprint:", error);
+          Swal.fire(
+            'Error',
+            'No se pudo eliminar la tarea.',
+            'error'
+          );
+        }
+      }
+    });
   };
 
   const handleVerTarea = () => {

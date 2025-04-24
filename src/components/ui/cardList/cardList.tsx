@@ -5,6 +5,7 @@ import { useTarea } from "../../../hooks/useTareas";
 import { Eye, Pencil, Trash2 } from "lucide-react";
 import { SprintSelector } from "../SprintSelector/SprintSelector";
 import { ModalVerTarea } from "../modalVerTarea/ModalVerTarea";
+import Swal from "sweetalert2";
 
 type ICardList = {
   tarea: ITarea;
@@ -16,7 +17,34 @@ export const CardList: FC<ICardList> = ({ tarea, handleOpenModalEdit }) => {
   const [modalTarea, setModalTarea] = useState<ITarea | null>(null);
 
   const eliminarTareaByid = () => {
-    eliminarTarea(tarea.id!);
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: `¿Deseas eliminar la tarea "${tarea.nombre}"?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        try {
+          eliminarTarea(tarea.id!);
+          Swal.fire(
+            '¡Eliminada!',
+            'La tarea ha sido eliminada correctamente.',
+            'success'
+          );
+        } catch (error) {
+          console.error("Error al eliminar la tarea:", error);
+          Swal.fire(
+            'Error',
+            'No se pudo eliminar la tarea.',
+            'error'
+          );
+        }
+      }
+    });
   };
 
   const editarTarea = () => {
