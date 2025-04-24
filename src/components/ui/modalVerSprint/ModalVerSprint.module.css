@@ -1,0 +1,49 @@
+.modalBackdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: brightness(90%) blur(3px);
+    z-index: 100000000;
+}
+
+.modalContainer {
+    background-color: #F5F7FA;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    width: 35vw;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    align-items: center;
+    justify-content: space-around;
+    padding: 1.5rem;
+    border-radius: 15px;
+    border-top: 5px solid #A5BED4;
+    text-align: center;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+    .modalContainer {
+        width: 80vw;
+    }
+}

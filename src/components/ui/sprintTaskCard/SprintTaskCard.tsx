@@ -7,23 +7,24 @@ import { useSprint } from "../../../hooks/useSprint";
 import { sprintStore } from "../../../store/sprintStore";
 import { ModalSprint } from "../ModalTareaSprint/ModalTareaSprint";
 import { useTarea } from "../../../hooks/useTareas";
+import { ModalVerTarea } from "../modalVerTarea/ModalVerTarea";
+
 type Props = {
   tarea: ITarea;
 };
 
 export const SprintTaskCard = ({ tarea }: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isVerTareaOpen, setIsVerTareaOpen] = useState(false);
   const [mostrarOpciones, setmostrarOpciones] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  const { eliminarTareaSprint } = useTarea(); // Obtener la función del hook
-
+  const { eliminarTareaSprint } = useTarea();
   const setTareaActiva = tareaStore((state) => state.setTareaActiva);
   const { putEditarTareaSprint } = useSprint();
 
-  // Obtener el ID del sprint activo desde el store
   const sprintActivoId = sprintStore((state) => state.sprintActivo?.id);
 
   const handleEditTask = () => {
@@ -31,10 +32,8 @@ export const SprintTaskCard = ({ tarea }: Props) => {
     openModal();
   };
 
-
   const handleEstadoChange = async (nuevoEstado: "en progreso" | "completada") => {
     try {
-      // Usar el ID del sprint activo desde el store
       if (!sprintActivoId) {
         console.error("El ID del sprint activo no está definido.");
         return;
@@ -42,9 +41,7 @@ export const SprintTaskCard = ({ tarea }: Props) => {
 
       const tareaActualizada = { ...tarea, estado: nuevoEstado };
       await putEditarTareaSprint(sprintActivoId, tareaActualizada);
-
-      console.log(`Tarea actualizada a estado: ${nuevoEstado}`);
-      setmostrarOpciones(false); // Ocultar el menú
+      setmostrarOpciones(false);
     } catch (error) {
       console.error("Error al cambiar el estado de la tarea:", error);
     }
@@ -56,12 +53,19 @@ export const SprintTaskCard = ({ tarea }: Props) => {
         console.error("El ID del sprint activo no está definido.");
         return;
       }
-  
+
       await eliminarTareaSprint(sprintActivoId, tarea);
-      console.log(`Tarea eliminada: ${tarea.nombre}`);
     } catch (error) {
       console.error("Error al eliminar la tarea del sprint:", error);
     }
+  };
+
+  const handleVerTarea = () => {
+    setIsVerTareaOpen(true);
+  };
+
+  const closeVerTarea = () => {
+    setIsVerTareaOpen(false);
   };
 
   return (
@@ -85,12 +89,13 @@ export const SprintTaskCard = ({ tarea }: Props) => {
       <button className={styles.moveBtn}>Enviar a: Backlog</button>
 
       <div className={styles.icons}>
-        <span><Eye size={20} /></span>
+        <span onClick={handleVerTarea}><Eye size={20} /></span>
         <span onClick={handleEditTask}><Pencil size={20} /></span>
         <span onClick={handleEliminarTarea}><Trash2 size={20} /></span>
       </div>
 
       {isModalOpen && <ModalSprint handleCloseModal={closeModal} />}
+      {isVerTareaOpen && <ModalVerTarea tarea={tarea} handleClose={closeVerTarea} />}
     </div>
   );
 };
