@@ -1,46 +1,55 @@
-import { ChangeEvent, FC, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { tareaStore } from "../../../store/backLogStore";
 import style from "./ModalTareaSprint.module.css";
+import { ITarea } from "../../../types/ITarea";
+import { useSprint } from "../../../hooks/useSprint";
+import { sprintStore } from "../../../store/sprintStore";
+import { tareaSchema } from "../../../schemas/tareaSchema"; // ✅ Usamos el schema compartido
 import Swal from "sweetalert2";
-import * as Yup from "yup";
-import { tareaSchema } from "../../../schemas/tareaSchema";
 
-type IModalSprint = {
-  handleCloseModal: VoidFunction;
-  handleAddTask: (newTask: any) => void;
-};
-
-const initialState = {
+const initialState: ITarea = {
   id: "",
+  estado: "pendiente",
   nombre: "",
   descripcion: "",
   fechaCierre: "",
-  estado: "pendiente",
 };
 
-export const ModalSprint: FC<IModalSprint> = ({
-  handleCloseModal,
-  handleAddTask,
-}) => {
-  const [formValues, setFormValues] = useState(initialState);
+interface IModal {
+  handleCloseModal: () => void;
+}
+
+export const ModalSprint = ({ handleCloseModal }: IModal) => {
+  const tareaActiva = tareaStore((state) => state.tareaActiva);
+  const setTareaActiva = tareaStore((state) => state.setTareaActiva);
+  const { crearTareaSprint, putEditarTareaSprint } = useSprint();
+  const sprintActivoId = sprintStore((state) => state.sprintActivo?.id);
+
+  const [formValues, setFormValues] = useState<ITarea>(initialState);
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
-  const handleChange = async (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  useEffect(() => {
+    if (tareaActiva) {
+      setFormValues(tareaActiva);
+    } else {
+      setFormValues(initialState);
+    }
+  }, [tareaActiva]);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     const updatedValues = { ...formValues, [name]: value };
     setFormValues(updatedValues);
 
-    try {
-      await tareaSchema.validateAt(name, updatedValues);
-      setFormErrors((prev) => ({ ...prev, [name]: "" }));
-    } catch (err: any) {
-      setFormErrors((prev) => ({ ...prev, [name]: err.message }));
-    }
-  };
-
-  const generateUniqueId = (): string => {
-    return Date.now().toString(36) + Math.random().toString(36).substring(2);
+    // Validación instantánea para el campo
+    tareaSchema
+      .validateAt(name, updatedValues)
+      .then(() => {
+        setFormErrors((prev) => ({ ...prev, [name]: "" }));
+      })
+      .catch((validationError: any) => {
+        setFormErrors((prev) => ({ ...prev, [name]: validationError.message }));
+      });
   };
 
   const handleSubmit = async (e: FormEvent) => {
@@ -49,18 +58,28 @@ export const ModalSprint: FC<IModalSprint> = ({
     try {
       await tareaSchema.validate(formValues, { abortEarly: false });
 
-      const newTask = { ...formValues, id: generateUniqueId() };
-      handleAddTask(newTask);
+      if (!sprintActivoId) {
+        return Swal.fire("Error", "El ID del sprint activo no está definido.", "error");
+      }
 
-      Swal.fire("Tarea creada", "La tarea se ha agregado correctamente", "success");
-      handleCloseModal();
+      if (tareaActiva) {
+        await putEditarTareaSprint(sprintActivoId, formValues);
+        Swal.fire("Tarea actualizada", "Los cambios se guardaron correctamente", "success");
+      } else {
+        await crearTareaSprint(sprintActivoId, { ...formValues, id: new Date().toISOString() });
+        Swal.fire("Tarea creada", "La tarea se ha agregado correctamente", "success");
+      }
+
+      handleClose();
     } catch (err: any) {
       const validationErrors: Record<string, string> = {};
       err.inner.forEach((error: any) => {
         validationErrors[error.path] = error.message;
       });
       setFormErrors(validationErrors);
-      handleCloseModal();
+
+      handleClose();
+
       Swal.fire({
         icon: "error",
         title: "Error en el formulario",
@@ -69,37 +88,37 @@ export const ModalSprint: FC<IModalSprint> = ({
     }
   };
 
+  const handleClose = () => {
+    setFormValues(initialState);
+    setTareaActiva(null);
+    handleCloseModal();
+  };
+
   return (
     <div className={style.containerPrincipalModal}>
       <div className={style.contentPopUp}>
         <div>
-          <h3>Crear Tarea</h3>
+          <h3>{tareaActiva ? "Editar tarea" : "Crear Tarea"}</h3>
         </div>
         <form onSubmit={handleSubmit} className={style.formContent}>
           <div>
             <input
-              placeholder="Ingrese un título para la tarea"
+              placeholder="Ingrese un título"
               onChange={handleChange}
               type="text"
               value={formValues.nombre}
               autoComplete="off"
               name="nombre"
             />
-            {formErrors.nombre && (
-              <span className={style.errorMsg}>{formErrors.nombre}</span>
-            )}
+            {formErrors.nombre && <span className={style.errorMsg}>{formErrors.nombre}</span>}
 
-            <input
-              placeholder="Ingrese una descripción para la tarea"
-              type="text"
+            <textarea
+              placeholder="Ingrese una descripción"
               onChange={handleChange}
               value={formValues.descripcion}
-              autoComplete="off"
               name="descripcion"
             />
-            {formErrors.descripcion && (
-              <span className={style.errorMsg}>{formErrors.descripcion}</span>
-            )}
+            {formErrors.descripcion && <span className={style.errorMsg}>{formErrors.descripcion}</span>}
 
             <input
               type="date"
@@ -108,15 +127,11 @@ export const ModalSprint: FC<IModalSprint> = ({
               autoComplete="off"
               name="fechaCierre"
             />
-            {formErrors.fechaCierre && (
-              <span className={style.errorMsg}>{formErrors.fechaCierre}</span>
-            )}
+            {formErrors.fechaCierre && <span className={style.errorMsg}>{formErrors.fechaCierre}</span>}
           </div>
           <div className={style.buttonCard}>
-            <button type="button" onClick={handleCloseModal}>
-              Cancelar
-            </button>
-            <button type="submit">Crear Tarea</button>
+            <button type="button" onClick={handleClose}>Cancelar</button>
+            <button type="submit">{tareaActiva ? "Editar tarea" : "Crear tarea"}</button>
           </div>
         </form>
       </div>

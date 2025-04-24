@@ -3,9 +3,9 @@ import { ITarea } from "../../../types/ITarea";
 import { Eye, Pencil, Trash2 } from "lucide-react";
 import { useState } from "react";
 import { tareaStore } from "../../../store/backLogStore";
-import { Modal } from "../ModalTarea/Modal";
 import { useSprint } from "../../../hooks/useSprint";
 import { sprintStore } from "../../../store/sprintStore";
+import { ModalSprint } from "../ModalTareaSprint/ModalTareaSprint";
 type Props = {
   tarea: ITarea;
 };
@@ -72,7 +72,7 @@ export const SprintTaskCard = ({ tarea }: Props) => {
         <span><Trash2 size={20} /></span>
       </div>
 
-      {isModalOpen && <Modal handleCloseModal={closeModal} />}
+      {isModalOpen && <ModalSprint handleCloseModal={closeModal} />}
     </div>
   );
 };

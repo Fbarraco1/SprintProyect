@@ -2,8 +2,9 @@ import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { tareaStore } from "../../../store/backLogStore";
 import style from "./Modal.module.css";
 import { ITarea } from "../../../types/ITarea";
-import { useSprint } from "../../../hooks/useSprint";
-import { sprintStore } from "../../../store/sprintStore";
+import { useTarea } from "../../../hooks/useTareas";
+import { tareaSchema } from "../../../schemas/tareaSchema";
+import Swal from "sweetalert2";
 
 
 const initialState: ITarea = {
@@ -20,58 +21,84 @@ interface IModal {
 
 
 export const Modal = ({ handleCloseModal }: IModal) => {
-  const tareaActiva = tareaStore((state) => state.tareaActiva);
-  const setTareaActiva = tareaStore((state) => state.setTareaActiva);
-  const { crearTareaSprint, putEditarTareaSprint } = useSprint();
+    const tareaActiva = tareaStore((state) => state.tareaActiva);
+    const setTareaActiva = tareaStore((state) => state.setTareaActiva);
+    const { crearTarea, putTareaEditar } = useTarea();
+  
+    const [formValues, setFormValues] = useState<ITarea>(initialState);
+    const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
-  // Obtener el ID del sprint activo desde el store
-  const sprintActivoId = sprintStore((state) => state.sprintActivo?.id);
-
-  const [formValues, setFormValues] = useState<ITarea>(initialState);
-
-  useEffect(() => {
-    if (tareaActiva) {
-      setFormValues(tareaActiva);
-    } else {
-      setFormValues(initialState); // limpia el formulario al crear nueva tarea
-    }
-  }, [tareaActiva]);
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormValues((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-
-    try {
-      if (!sprintActivoId) {
-        console.error("El ID del sprint activo no está definido.");
-        return;
-      }
-
-      // Verificar si hay una tarea activa (editar) o si se está creando una nueva tarea
+    useEffect(() => {
       if (tareaActiva) {
-        // Editar tarea existente
-        await putEditarTareaSprint(sprintActivoId, formValues);
+        setFormValues(tareaActiva);
       } else {
-        // Crear nueva tarea
-        await crearTareaSprint(sprintActivoId, { ...formValues, id: new Date().toISOString() });
+        setFormValues(initialState); // limpia el formulario al crear nueva tarea
       }
+    }, [tareaActiva]);
+  
+    const handleChange = (
+      e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) => {
+      const { name, value } = e.target;
+      const updatedValues = { ...formValues, [name]: value };
+      setFormValues(updatedValues);
+  
+      // Validación instantánea para el campo usando Yup
+      tareaSchema
+        .validateAt(name, updatedValues)
+        .then(() => {
+          setFormErrors((prev) => ({ ...prev, [name]: "" }));
+        })
+        .catch((validationError: any) => {
+          setFormErrors((prev) => ({ ...prev, [name]: validationError.message }));
+        });
+    };
+  
 
-      // Cerrar el modal y limpiar el formulario
-      handleClose();
-    } catch (error) {
-      console.error("Error al enviar el formulario:", error);
-    }
-  };
-
-  const handleClose = () => {
-    setFormValues(initialState); // resetea el formulario primero
-    setTareaActiva(null);
-    handleCloseModal();
-  };
+    const handleSubmit = async (e: FormEvent) => {
+      e.preventDefault();
+    
+      try {
+        // Validamos todo el formulario; abortEarly: false recopila todos los errores.
+        await tareaSchema.validate(formValues, { abortEarly: false });
+    
+        // Si la validación es exitosa, continúa con la acción correspondiente.
+        if (tareaActiva) {
+          putTareaEditar(formValues);
+          Swal.fire("Tarea actualizada", "Los cambios se guardaron correctamente", "success");
+        } else {
+          crearTarea({ ...formValues, id: new Date().toISOString() });
+          Swal.fire("Tarea creada", "La tarea se ha agregado correctamente", "success");
+        }
+    
+        handleClose(); // Cierra el modal tras la validación exitosa.
+      } catch (err: any) {
+        // Capturamos y asignamos los errores a cada campo
+        const validationErrors: Record<string, string> = {};
+        err.inner.forEach((error: any) => {
+          validationErrors[error.path] = error.message;
+        });
+        setFormErrors(validationErrors);
+    
+        // 🔥 Cierra el modal antes de mostrar el error
+        handleClose();
+    
+        // 🔥 Mostrar alerta con los mensajes de error
+        Swal.fire({
+          icon: "error",
+          title: "Error en el formulario",
+          html: Object.values(validationErrors).map(msg => <p>${msg}</p>).join(""),
+        });
+      }
+    };
+  
+    const handleClose = () => {
+      setFormValues(initialState); // resetea el formulario primero
+      setTareaActiva(null);
+      handleCloseModal();
+      
+    };
+    
 
   return (
     <div className={style.containerPrincipalModal}>

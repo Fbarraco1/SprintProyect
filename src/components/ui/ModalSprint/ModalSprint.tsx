@@ -5,7 +5,6 @@ import { ISprint } from "../../../types/ISprint";
 import { useSprint } from "../../../hooks/useSprint";
 import Swal from "sweetalert2";
 
-import * as Yup from "yup";
 import { sprintSchema } from "../../../schemas/sprintSchema"; // Importa tu schema
 
 const initialState: ISprint = {

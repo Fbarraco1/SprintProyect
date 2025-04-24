@@ -16,6 +16,34 @@
         "nombre": "YUP32",
         "descripcion": "Haciendo implementacion",
         "fechaCierre": "2025-04-24"
+      },
+      {
+        "id": "2025-04-24T15:13:08.407Z",
+        "estado": "pendiente",
+        "nombre": "kkkkkkkkkk",
+        "descripcion": "kkkkkkkkkk",
+        "fechaCierre": "2025-05-04"
+      },
+      {
+        "id": "2025-04-24T15:28:12.701Z",
+        "estado": "pendiente",
+        "nombre": "JAJAJAJAJJA",
+        "descripcion": "kkkkkkkkkkkkk",
+        "fechaCierre": "2025-04-18"
+      },
+      {
+        "id": "2025-04-24T15:28:30.837Z",
+        "estado": "pendiente",
+        "nombre": "hhhhhhhhhhhhh",
+        "descripcion": "ggggggggggggggg",
+        "fechaCierre": "2025-04-04"
+      },
+      {
+        "id": "2025-04-24T15:34:01.377Z",
+        "estado": "pendiente",
+        "nombre": "TAREALISTALISTOSA",
+        "descripcion": "55555555555",
+        "fechaCierre": "2025-05-03"
       }
     ]
   },
@@ -49,6 +77,27 @@
             "fechaLimite": "2025-03-05",
             "nombre": "JAmonn",
             "fechaCierre": "2025-04-12"
+          },
+          {
+            "id": "m9vhv3l4pgjlz9m1iy",
+            "nombre": "YupTarea",
+            "descripcion": "kkkkkkkkkkkkkkkkkkkkk",
+            "fechaCierre": "2025-04-19",
+            "estado": "en progreso"
+          },
+          {
+            "id": "m9vi28ndwln7hw0c9r",
+            "nombre": "choripimpis",
+            "descripcion": "ssadasdasdasd",
+            "fechaCierre": "2025-04-05",
+            "estado": "pendiente"
+          },
+          {
+            "id": "2025-04-24T15:33:25.244Z",
+            "estado": "en progreso",
+            "nombre": "jjjjjjjjjjjjjjjjjjjjjjj",
+            "descripcion": "jjjjjjjjjjjjjjjjjjjjjjjjjj",
+            "fechaCierre": "2025-04-13"
           }
         ]
       },
@@ -78,6 +127,13 @@
             "nombre": "Tarea25",
             "descripcion": "Hacer tareas",
             "fechaCierre": "2025-04-27",
+            "estado": "en progreso"
+          },
+          {
+            "id": "m9vi68749g20kud25b",
+            "nombre": "Tarea",
+            "descripcion": "dddddddddd",
+            "fechaCierre": "2025-04-18",
             "estado": "pendiente"
           }
         ]
