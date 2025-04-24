@@ -55,7 +55,7 @@ export const Sprint = ({ sprint }: IPropsSprint) => {
       {/* Contenedor de columnas */}
       <div className={styles.columnsContainer}>
         {/* Columna Pendiente */}
-        <div className={styles.column}>
+        <div className={styles.columnPendient}>
           <h3>Pendiente</h3>
           {sprintData.tareas
             ?.filter((tarea) => tarea.estado === "pendiente")
@@ -65,7 +65,7 @@ export const Sprint = ({ sprint }: IPropsSprint) => {
         </div>
 
         {/* Columna En progreso */}
-        <div className={styles.column}>
+        <div className={styles.columnProgress}>
           <h3>En progreso</h3>
           {sprintData.tareas
             ?.filter((tarea) => tarea.estado === "en progreso")
@@ -75,7 +75,7 @@ export const Sprint = ({ sprint }: IPropsSprint) => {
         </div>
 
         {/* Columna Completada */}
-        <div className={styles.column}>
+        <div className={styles.columnCompleted}>
           <h3>Completada</h3>
           {sprintData.tareas
             ?.filter((tarea) => tarea.estado === "completada")
