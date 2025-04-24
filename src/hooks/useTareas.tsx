@@ -3,6 +3,7 @@ import { ITarea } from "../types/ITarea";
 import { tareaStore } from "../store/backLogStore";
 import { createBackLogController, deleteBackLogController, getBackLogsController, updateBackLogController } from "../data/backLogController";
 import { eliminarTareaDelSprintController } from "../data/sprintController";
+import { sprintStore } from "../store/sprintStore";
 
 
 export const useTarea = () => {
@@ -69,13 +70,12 @@ export const useTarea = () => {
     try {
       const tareaEliminada = await eliminarTareaDelSprintController(sprintId, tareaActualizada);
       if (tareaEliminada) {
-        eliminarUnaTarea(tareaEliminada.id);
+        sprintStore.getState().eliminarTareaDeSprint(sprintId, tareaEliminada.id); // Actualiza el store
       }
     } catch (error) {
       console.error("Error al eliminar tarea del sprint:", error);
     }
   }
-
   return {
     tareas,
     getTareas,

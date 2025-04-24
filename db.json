@@ -32,13 +32,6 @@
         "fechaCierre": "2025-04-18"
       },
       {
-        "id": "2025-04-24T15:28:30.837Z",
-        "estado": "pendiente",
-        "nombre": "hhhhhhhhhhhhh",
-        "descripcion": "ggggggggggggggg",
-        "fechaCierre": "2025-04-04"
-      },
-      {
         "id": "2025-04-24T15:34:01.377Z",
         "estado": "pendiente",
         "nombre": "TAREALISTALISTOSA",
@@ -84,13 +77,6 @@
             "descripcion": "kkkkkkkkkkkkkkkkkkkkk",
             "fechaCierre": "2025-04-19",
             "estado": "en progreso"
-          },
-          {
-            "id": "2025-04-24T15:33:25.244Z",
-            "estado": "en progreso",
-            "nombre": "jjjjjjjjjjjjjjjjjjjjjjj",
-            "descripcion": "jjjjjjjjjjjjjjjjjjjjjjjjjj",
-            "fechaCierre": "2025-04-13"
           }
         ]
       },
@@ -157,6 +143,13 @@
             "descripcion": "adsadsa",
             "fechaCierre": "2025-04-24",
             "estado": "pendiente"
+          },
+          {
+            "id": "2025-04-24T15:28:30.837Z",
+            "estado": "completada",
+            "nombre": "hhhhhhhhhhhhh",
+            "descripcion": "ggggggggggggggg",
+            "fechaCierre": "2025-04-04"
           }
         ]
       }

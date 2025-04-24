@@ -9,6 +9,7 @@ interface ISprintStore {
     agregarNuevoSprint: (nuevoSprint: ISprint) => void
     editarUnSprint: (sprintActualizado: ISprint) => void
     eliminarUnSprint: (idSprint: string) => void
+    eliminarTareaDeSprint: (sprintId: string, tareaId: string) => void
 }
 
 export const sprintStore = create<ISprintStore>((set) => ({
@@ -31,5 +32,14 @@ export const sprintStore = create<ISprintStore>((set) => ({
             return { sprints: arregloSprints };
         }),
 
-    setSprintActivo: (sprintActivoIn) => set(() => ({ sprintActivo: sprintActivoIn }))
+    setSprintActivo: (sprintActivoIn) => set(() => ({ sprintActivo: sprintActivoIn })),
+    eliminarTareaDeSprint: (sprintId, tareaId) =>
+        set((state) => ({
+          sprints: state.sprints.map((sprint) =>
+            sprint.id === sprintId
+              ? { ...sprint, tareas: (sprint.tareas ?? []).filter((t) => t.id !== tareaId) }
+              : sprint
+          ),
+        })),
+      
 }))

@@ -56,7 +56,7 @@ export const SprintTaskCard = ({ tarea }: Props) => {
         console.error("El ID del sprint activo no está definido.");
         return;
       }
-
+  
       await eliminarTareaSprint(sprintActivoId, tarea);
       console.log(`Tarea eliminada: ${tarea.nombre}`);
     } catch (error) {
