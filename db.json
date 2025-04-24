@@ -25,21 +25,23 @@
             "nombre": "Tarea5",
             "descripcion": "Esta es una tarea",
             "fechaCierre": "2025-04-25",
-            "estado": "pendiente"
+            "estado": "en progreso"
           },
           {
             "id": "m9k2gvem026hlmpuib47",
             "nombre": "TArea Definitiva",
             "descripcion": "TATATATATa",
             "fechaCierre": "2025-04-26",
-            "estado": "pendiente"
+            "estado": "completada"
           },
           {
             "id": "dcec0ad4-31e0-4279-8ccf-72bd1f20b52d",
             "titulo": "Tarea backlog 1",
             "descripcion": "tarea backlog",
             "estado": "pendiente",
-            "fechaLimite": "2025-03-05"
+            "fechaLimite": "2025-03-05",
+            "nombre": "JAmonn",
+            "fechaCierre": "2025-04-12"
           }
         ]
       },
@@ -51,7 +53,7 @@
         "tareas": [
           {
             "id": "Mon Apr 21 2025",
-            "estado": "pendiente",
+            "estado": "completada",
             "nombre": "Enviar Tarea a Sprint",
             "descripcion": "aaa",
             "fechaCierre": "2025-04-30",
@@ -63,6 +65,13 @@
             "nombre": "Tarea 2025",
             "descripcion": "tarea clase miercoles",
             "fechaCierre": "2025-04-23"
+          },
+          {
+            "id": "m9vgnpjrshdloodm46",
+            "nombre": "Tarea25",
+            "descripcion": "Hacer tareas",
+            "fechaCierre": "2025-04-27",
+            "estado": "pendiente"
           }
         ]
       },
@@ -77,7 +86,7 @@
             "nombre": "El pepe",
             "descripcion": "Ete setch",
             "fechaCierre": "2025-04-22",
-            "estado": "pendiente"
+            "estado": "en progreso"
           },
           {
             "id": "Wed Apr 16 2025",

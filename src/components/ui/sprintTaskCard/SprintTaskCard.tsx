@@ -4,8 +4,8 @@ import { Eye, Pencil, Trash2 } from "lucide-react";
 import { useState } from "react";
 import { tareaStore } from "../../../store/backLogStore";
 import { Modal } from "../ModalTarea/Modal";
-import { useTarea } from "../../../hooks/useTareas";
-
+import { useSprint } from "../../../hooks/useSprint";
+import { sprintStore } from "../../../store/sprintStore";
 type Props = {
   tarea: ITarea;
 };
@@ -18,16 +18,32 @@ export const SprintTaskCard = ({ tarea }: Props) => {
   const closeModal = () => setIsModalOpen(false);
 
   const setTareaActiva = tareaStore((state) => state.setTareaActiva);
-  const { putTareaEditar } = useTarea();
+  const { putEditarTareaSprint } = useSprint();
+
+  // Obtener el ID del sprint activo desde el store
+  const sprintActivoId = sprintStore((state) => state.sprintActivo?.id);
 
   const handleEditTask = () => {
     setTareaActiva(tarea);
     openModal();
   };
 
-  const handleEstadoChange = (nuevoEstado: "en progreso" | "completada") => {
-    putTareaEditar({ ...tarea, estado: nuevoEstado });
-    setmostrarOpciones(false); // Ocultar el menú
+  const handleEstadoChange = async (nuevoEstado: "en progreso" | "completada") => {
+    try {
+      // Usar el ID del sprint activo desde el store
+      if (!sprintActivoId) {
+        console.error("El ID del sprint activo no está definido.");
+        return;
+      }
+
+      const tareaActualizada = { ...tarea, estado: nuevoEstado };
+      await putEditarTareaSprint(sprintActivoId, tareaActualizada);
+
+      console.log(`Tarea actualizada a estado: ${nuevoEstado}`);
+      setmostrarOpciones(false); // Ocultar el menú
+    } catch (error) {
+      console.error("Error al cambiar el estado de la tarea:", error);
+    }
   };
 
   return (

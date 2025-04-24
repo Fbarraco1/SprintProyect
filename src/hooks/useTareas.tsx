@@ -38,7 +38,7 @@ export const useTarea = () => {
     }
   };
 
-  // Función para editar una tarea existente
+  // Función para editar una tarea existente en backlog
   const putTareaEditar = async (tareaActualizada: ITarea) => {
     try {
       const tareaEditada = await updateBackLogController(tareaActualizada);

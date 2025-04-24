@@ -3,8 +3,8 @@ import { ITarea } from "../types/ITarea";
 import { putBackLogList } from "../http/backLogList";
 
 const API_URL = "http://localhost:3000/backlog"; // URL de la API para obtener los backlogs
-// // Obtiene todos los backlogs
-// 🔹 Función para obtener todos los proyectos
+
+// Función para obtener todos los proyectos
 export const getBackLogsController = async (): Promise<
   ITarea[] | undefined
 > => {
@@ -60,7 +60,7 @@ export const getBackLogsController = async (): Promise<
       console.error("Error al actualizar backlog");
     }}
 
-      export const deleteBackLogController = async (id: string) => {
+  export const deleteBackLogController = async (id: string) => {
         const backlogDb = await getBackLogsController();
       try {
         if(backlogDb) {
@@ -69,6 +69,6 @@ export const getBackLogsController = async (): Promise<
         }
       } catch (error) {
         console.error("Error al eliminar proyecto: ", error)
-      }
+  }
         
-      }
+}

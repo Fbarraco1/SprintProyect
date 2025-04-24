@@ -2,8 +2,8 @@ import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { tareaStore } from "../../../store/backLogStore";
 import style from "./Modal.module.css";
 import { ITarea } from "../../../types/ITarea";
-import { useTarea } from "../../../hooks/useTareas";
-
+import { useSprint } from "../../../hooks/useSprint";
+import { sprintStore } from "../../../store/sprintStore";
 
 
 const initialState: ITarea = {
@@ -20,42 +20,58 @@ interface IModal {
 
 
 export const Modal = ({ handleCloseModal }: IModal) => {
-    const tareaActiva = tareaStore((state) => state.tareaActiva);
-    const setTareaActiva = tareaStore((state) => state.setTareaActiva);
-    const { crearTarea, putTareaEditar } = useTarea();
-  
-    const [formValues, setFormValues] = useState<ITarea>(initialState);
-  
-    useEffect(() => {
-      if (tareaActiva) {
-        setFormValues(tareaActiva);
-      } else {
-        setFormValues(initialState); // limpia el formulario al crear nueva tarea
+  const tareaActiva = tareaStore((state) => state.tareaActiva);
+  const setTareaActiva = tareaStore((state) => state.setTareaActiva);
+  const { crearTareaSprint, putEditarTareaSprint } = useSprint();
+
+  // Obtener el ID del sprint activo desde el store
+  const sprintActivoId = sprintStore((state) => state.sprintActivo?.id);
+
+  const [formValues, setFormValues] = useState<ITarea>(initialState);
+
+  useEffect(() => {
+    if (tareaActiva) {
+      setFormValues(tareaActiva);
+    } else {
+      setFormValues(initialState); // limpia el formulario al crear nueva tarea
+    }
+  }, [tareaActiva]);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormValues((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+
+    try {
+      if (!sprintActivoId) {
+        console.error("El ID del sprint activo no está definido.");
+        return;
       }
-    }, [tareaActiva]);
-  
-    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      const { name, value } = e.target;
-      setFormValues((prev) => ({ ...prev, [name]: value }));
-    };
-  
-    const handleSubmit = (e: FormEvent) => {
-      e.preventDefault();
+
+      // Verificar si hay una tarea activa (editar) o si se está creando una nueva tarea
       if (tareaActiva) {
-        putTareaEditar(formValues);
+        // Editar tarea existente
+        await putEditarTareaSprint(sprintActivoId, formValues);
       } else {
-        crearTarea({ ...formValues, id: new Date().toISOString() });
+        // Crear nueva tarea
+        await crearTareaSprint(sprintActivoId, { ...formValues, id: new Date().toISOString() });
       }
-      handleClose(); 
-    };
-  
-    const handleClose = () => {
-      setFormValues(initialState); // resetea el formulario primero
-      setTareaActiva(null);
-      handleCloseModal();
-      
-    };
-    
+
+      // Cerrar el modal y limpiar el formulario
+      handleClose();
+    } catch (error) {
+      console.error("Error al enviar el formulario:", error);
+    }
+  };
+
+  const handleClose = () => {
+    setFormValues(initialState); // resetea el formulario primero
+    setTareaActiva(null);
+    handleCloseModal();
+  };
 
   return (
     <div className={style.containerPrincipalModal}>
