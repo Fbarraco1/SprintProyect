@@ -139,6 +139,52 @@ export const createTareaSprintController = async (sprintId: string, nuevaTarea: 
     console.error("Error al actualizar tarea en sprint: ", error);
   }
 };
+export const eliminarTareaDelSprintController = async (sprintId: string, tareaActualizada: ITarea): Promise<ITarea | undefined> => {
+  try {
+    // Obtener la lista completa de sprints
+    const sprintDb = await getSprintsController();
+
+    if (!sprintDb) {
+      console.error("No se pudo obtener la lista de sprints.");
+      return;
+    }
+
+    // Encontrar el sprint activo por su ID
+    const sprintActivo = sprintDb.find((sprint) => sprint.id === sprintId);
+
+    if (!sprintActivo) {
+      console.error(`No se encontró el sprint con ID: ${sprintId}`);
+      return;
+    }
+
+    // Encontrar la tarea a eliminar
+    const tareaAEliminar = sprintActivo.tareas?.find((tarea) => tarea.id === tareaActualizada.id);
+
+    if (!tareaAEliminar) {
+      console.error(`No se encontró la tarea con ID: ${tareaActualizada.id} en el sprint ${sprintId}`);
+      return;
+    }
+
+    // Filtrar la tarea eliminada de la lista de tareas
+    const tareasActualizadas = sprintActivo.tareas?.filter((tarea) => tarea.id !== tareaActualizada.id) || [];
+
+    // Crear un nuevo sprint con las tareas actualizadas
+    const sprintActualizado = { ...sprintActivo, tareas: tareasActualizadas };
+
+    // Actualizar la lista completa de sprints
+    const sprintsActualizados = sprintDb.map((sprint) =>
+      sprint.id === sprintId ? sprintActualizado : sprint
+    );
+
+    // Guardar la lista completa de sprints actualizada
+    await putSprintList(sprintsActualizados);
+
+    // Retornar la tarea eliminada
+    return tareaAEliminar;
+  } catch (error) {
+    console.error("Error al eliminar tarea del sprint: ", error);
+  }
+};
   
   
   export const deleteSprintController = async (id: string) => {

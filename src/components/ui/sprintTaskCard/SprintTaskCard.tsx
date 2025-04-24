@@ -6,6 +6,7 @@ import { tareaStore } from "../../../store/backLogStore";
 import { useSprint } from "../../../hooks/useSprint";
 import { sprintStore } from "../../../store/sprintStore";
 import { ModalSprint } from "../ModalTareaSprint/ModalTareaSprint";
+import { useTarea } from "../../../hooks/useTareas";
 type Props = {
   tarea: ITarea;
 };
@@ -17,6 +18,8 @@ export const SprintTaskCard = ({ tarea }: Props) => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
+  const { eliminarTareaSprint } = useTarea(); // Obtener la función del hook
+
   const setTareaActiva = tareaStore((state) => state.setTareaActiva);
   const { putEditarTareaSprint } = useSprint();
 
@@ -27,6 +30,7 @@ export const SprintTaskCard = ({ tarea }: Props) => {
     setTareaActiva(tarea);
     openModal();
   };
+
 
   const handleEstadoChange = async (nuevoEstado: "en progreso" | "completada") => {
     try {
@@ -43,6 +47,20 @@ export const SprintTaskCard = ({ tarea }: Props) => {
       setmostrarOpciones(false); // Ocultar el menú
     } catch (error) {
       console.error("Error al cambiar el estado de la tarea:", error);
+    }
+  };
+
+  const handleEliminarTarea = async () => {
+    try {
+      if (!sprintActivoId) {
+        console.error("El ID del sprint activo no está definido.");
+        return;
+      }
+
+      await eliminarTareaSprint(sprintActivoId, tarea);
+      console.log(`Tarea eliminada: ${tarea.nombre}`);
+    } catch (error) {
+      console.error("Error al eliminar la tarea del sprint:", error);
     }
   };
 
@@ -69,7 +87,7 @@ export const SprintTaskCard = ({ tarea }: Props) => {
       <div className={styles.icons}>
         <span><Eye size={20} /></span>
         <span onClick={handleEditTask}><Pencil size={20} /></span>
-        <span><Trash2 size={20} /></span>
+        <span onClick={handleEliminarTarea}><Trash2 size={20} /></span>
       </div>
 
       {isModalOpen && <ModalSprint handleCloseModal={closeModal} />}

@@ -86,13 +86,6 @@
             "estado": "en progreso"
           },
           {
-            "id": "m9vi28ndwln7hw0c9r",
-            "nombre": "choripimpis",
-            "descripcion": "ssadasdasdasd",
-            "fechaCierre": "2025-04-05",
-            "estado": "pendiente"
-          },
-          {
             "id": "2025-04-24T15:33:25.244Z",
             "estado": "en progreso",
             "nombre": "jjjjjjjjjjjjjjjjjjjjjjj",
@@ -128,13 +121,6 @@
             "descripcion": "Hacer tareas",
             "fechaCierre": "2025-04-27",
             "estado": "en progreso"
-          },
-          {
-            "id": "m9vi68749g20kud25b",
-            "nombre": "Tarea",
-            "descripcion": "dddddddddd",
-            "fechaCierre": "2025-04-18",
-            "estado": "pendiente"
           }
         ]
       },

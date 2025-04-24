@@ -2,6 +2,8 @@ import { ITarea } from "../types/ITarea";
 
 import { tareaStore } from "../store/backLogStore";
 import { createBackLogController, deleteBackLogController, getBackLogsController, updateBackLogController } from "../data/backLogController";
+import { eliminarTareaDelSprintController } from "../data/sprintController";
+
 
 export const useTarea = () => {
   // Obtenemos los getters y setters del store
@@ -63,12 +65,24 @@ export const useTarea = () => {
     }
   };
 
+  const eliminarTareaSprint = async (sprintId: string, tareaActualizada: ITarea) => {
+    try {
+      const tareaEliminada = await eliminarTareaDelSprintController(sprintId, tareaActualizada);
+      if (tareaEliminada) {
+        eliminarUnaTarea(tareaEliminada.id);
+      }
+    } catch (error) {
+      console.error("Error al eliminar tarea del sprint:", error);
+    }
+  }
+
   return {
     tareas,
     getTareas,
     crearTarea,
     putTareaEditar,
     eliminarTarea,
-    agregarNuevaTarea
+    agregarNuevaTarea,
+    eliminarTareaSprint,
   };
 };
