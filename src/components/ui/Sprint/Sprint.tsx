@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ISprint } from "../../../types/ISprint"; 
-import { ModalSprint } from "../ModalTareaSprint/ModalSprint";
+import { ModalSprint } from "../ModalTareaSprint/ModalTareaSprint";
 import { SprintTaskCard } from "../sprintTaskCard/SprintTaskCard";
 import styles from "./Sprint.module.css";
 import { updateSprintController } from "../../../data/sprintController";

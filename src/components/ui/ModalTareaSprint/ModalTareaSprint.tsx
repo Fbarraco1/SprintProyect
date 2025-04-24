@@ -1,49 +1,38 @@
-import { ChangeEvent, FC, FormEvent, useEffect, useState } from "react";
-import style from "./ModalSprint.module.css";
-import { sprintStore } from "../../../store/sprintStore";
-import { ISprint } from "../../../types/ISprint";
-import { useSprint } from "../../../hooks/useSprint";
+import { ChangeEvent, FC, FormEvent, useState } from "react";
+import style from "./ModalTareaSprint.module.css";
 import Swal from "sweetalert2";
-
 import * as Yup from "yup";
-import { sprintSchema } from "../../../schemas/sprintSchema"; // Importa tu schema
-
-const initialState: ISprint = {
-  id: "",
-  nombre: "",
-  fechaInicio: "",
-  fechaCierre: "",
-};
+import { tareaSchema } from "../../../schemas/tareaSchema";
 
 type IModalSprint = {
   handleCloseModal: VoidFunction;
+  handleAddTask: (newTask: any) => void;
 };
 
-export const ModalSprint: FC<IModalSprint> = ({ handleCloseModal }) => {
-  const sprintActivo = sprintStore((state) => state.sprintActivo);
-  const setSprintActivo = sprintStore((state) => state.setSprintActivo);
-  const { crearSprint, putSprintEditar } = useSprint();
+const initialState = {
+  id: "",
+  nombre: "",
+  descripcion: "",
+  fechaCierre: "",
+  estado: "pendiente",
+};
 
-  const [formValues, setFormValues] = useState<ISprint>(initialState);
+export const ModalSprint: FC<IModalSprint> = ({
+  handleCloseModal,
+  handleAddTask,
+}) => {
+  const [formValues, setFormValues] = useState(initialState);
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
-  useEffect(() => {
-    if (sprintActivo) {
-      setFormValues(sprintActivo);
-    } else {
-      setFormValues(initialState);
-    }
-  }, [sprintActivo]);
-
   const handleChange = async (
-    e: ChangeEvent<HTMLInputElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     const updatedValues = { ...formValues, [name]: value };
     setFormValues(updatedValues);
 
     try {
-      await sprintSchema.validateAt(name, updatedValues);
+      await tareaSchema.validateAt(name, updatedValues);
       setFormErrors((prev) => ({ ...prev, [name]: "" }));
     } catch (err: any) {
       setFormErrors((prev) => ({ ...prev, [name]: err.message }));
@@ -53,22 +42,17 @@ export const ModalSprint: FC<IModalSprint> = ({ handleCloseModal }) => {
   const generateUniqueId = (): string => {
     return Date.now().toString(36) + Math.random().toString(36).substring(2);
   };
-  
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-  
+
     try {
-      await sprintSchema.validate(formValues, { abortEarly: false });
-  
-      if (sprintActivo) {
-        await putSprintEditar(formValues);
-        Swal.fire("Sprint actualizado", "Los cambios se guardaron correctamente", "success");
-      } else {
-        await crearSprint({ ...formValues, id: generateUniqueId() });
-        Swal.fire("Sprint creado", "El Sprint se ha creado correctamente", "success");
-      }
-  
-      setSprintActivo(null);
+      await tareaSchema.validate(formValues, { abortEarly: false });
+
+      const newTask = { ...formValues, id: generateUniqueId() };
+      handleAddTask(newTask);
+
+      Swal.fire("Tarea creada", "La tarea se ha agregado correctamente", "success");
       handleCloseModal();
     } catch (err: any) {
       const validationErrors: Record<string, string> = {};
@@ -76,8 +60,7 @@ export const ModalSprint: FC<IModalSprint> = ({ handleCloseModal }) => {
         validationErrors[error.path] = error.message;
       });
       setFormErrors(validationErrors);
-  
-      // 🔥 Mostrar alerta de error con los mensajes de validación
+      handleCloseModal();
       Swal.fire({
         icon: "error",
         title: "Error en el formulario",
@@ -85,20 +68,17 @@ export const ModalSprint: FC<IModalSprint> = ({ handleCloseModal }) => {
       });
     }
   };
-  
-  
-  
 
   return (
     <div className={style.containerPrincipalModal}>
       <div className={style.contentPopUp}>
         <div>
-          <h3>{sprintActivo ? "Editar Sprint" : "Crear Sprint"}</h3>
+          <h3>Crear Tarea</h3>
         </div>
         <form onSubmit={handleSubmit} className={style.formContent}>
           <div>
             <input
-              placeholder="Ingrese un título"
+              placeholder="Ingrese un título para la tarea"
               onChange={handleChange}
               type="text"
               value={formValues.nombre}
@@ -108,16 +88,19 @@ export const ModalSprint: FC<IModalSprint> = ({ handleCloseModal }) => {
             {formErrors.nombre && (
               <span className={style.errorMsg}>{formErrors.nombre}</span>
             )}
+
             <input
-              type="date"
+              placeholder="Ingrese una descripción para la tarea"
+              type="text"
               onChange={handleChange}
-              value={formValues.fechaInicio}
+              value={formValues.descripcion}
               autoComplete="off"
-              name="fechaInicio"
+              name="descripcion"
             />
-            {formErrors.fechaInicio && (
-              <span className={style.errorMsg}>{formErrors.fechaInicio}</span>
+            {formErrors.descripcion && (
+              <span className={style.errorMsg}>{formErrors.descripcion}</span>
             )}
+
             <input
               type="date"
               onChange={handleChange}
@@ -130,8 +113,10 @@ export const ModalSprint: FC<IModalSprint> = ({ handleCloseModal }) => {
             )}
           </div>
           <div className={style.buttonCard}>
-            <button type="button" onClick={handleCloseModal}>Cancelar</button>
-            <button type="submit">{sprintActivo ? "Editar Sprint" : "Crear Sprint"}</button>
+            <button type="button" onClick={handleCloseModal}>
+              Cancelar
+            </button>
+            <button type="submit">Crear Tarea</button>
           </div>
         </form>
       </div>

@@ -3,7 +3,10 @@ import { tareaStore } from "../../../store/backLogStore";
 import style from "./Modal.module.css";
 import { ITarea } from "../../../types/ITarea";
 import { useTarea } from "../../../hooks/useTareas";
-
+//yup
+import * as Yup from 'yup';
+import { tareaSchema } from "../../../schemas/tareaSchema";
+import Swal from "sweetalert2";
 
 
 const initialState: ITarea = {
@@ -25,7 +28,8 @@ export const Modal = ({ handleCloseModal }: IModal) => {
     const { crearTarea, putTareaEditar } = useTarea();
   
     const [formValues, setFormValues] = useState<ITarea>(initialState);
-  
+    const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+
     useEffect(() => {
       if (tareaActiva) {
         setFormValues(tareaActiva);
@@ -34,19 +38,60 @@ export const Modal = ({ handleCloseModal }: IModal) => {
       }
     }, [tareaActiva]);
   
-    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const handleChange = (
+      e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) => {
       const { name, value } = e.target;
-      setFormValues((prev) => ({ ...prev, [name]: value }));
+      const updatedValues = { ...formValues, [name]: value };
+      setFormValues(updatedValues);
+  
+      // Validación instantánea para el campo usando Yup
+      tareaSchema
+        .validateAt(name, updatedValues)
+        .then(() => {
+          setFormErrors((prev) => ({ ...prev, [name]: "" }));
+        })
+        .catch((validationError: any) => {
+          setFormErrors((prev) => ({ ...prev, [name]: validationError.message }));
+        });
     };
   
-    const handleSubmit = (e: FormEvent) => {
+
+    const handleSubmit = async (e: FormEvent) => {
       e.preventDefault();
-      if (tareaActiva) {
-        putTareaEditar(formValues);
-      } else {
-        crearTarea({ ...formValues, id: new Date().toISOString() });
+    
+      try {
+        // Validamos todo el formulario; abortEarly: false recopila todos los errores.
+        await tareaSchema.validate(formValues, { abortEarly: false });
+    
+        // Si la validación es exitosa, continúa con la acción correspondiente.
+        if (tareaActiva) {
+          putTareaEditar(formValues);
+          Swal.fire("Tarea actualizada", "Los cambios se guardaron correctamente", "success");
+        } else {
+          crearTarea({ ...formValues, id: new Date().toISOString() });
+          Swal.fire("Tarea creada", "La tarea se ha agregado correctamente", "success");
+        }
+    
+        handleClose(); // Cierra el modal tras la validación exitosa.
+      } catch (err: any) {
+        // Capturamos y asignamos los errores a cada campo
+        const validationErrors: Record<string, string> = {};
+        err.inner.forEach((error: any) => {
+          validationErrors[error.path] = error.message;
+        });
+        setFormErrors(validationErrors);
+    
+        // 🔥 Cierra el modal antes de mostrar el error
+        handleClose();
+    
+        // 🔥 Mostrar alerta con los mensajes de error
+        Swal.fire({
+          icon: "error",
+          title: "Error en el formulario",
+          html: Object.values(validationErrors).map(msg => `<p>${msg}</p>`).join(""),
+        });
       }
-      handleClose(); 
     };
   
     const handleClose = () => {
@@ -69,26 +114,35 @@ export const Modal = ({ handleCloseModal }: IModal) => {
               placeholder="Ingrese un título"
               onChange={handleChange}
               type="text"
-              required
               value={formValues.nombre}
               autoComplete="off"
               name="nombre"
             />
+             {formErrors.nombre && (
+              <span className={style.errorMsg}>{formErrors.nombre}</span>
+            )}
+
             <textarea
               placeholder="Ingrese una descripción"
               onChange={handleChange}
-              required
               value={formValues.descripcion}
               name="descripcion"
             />
+            {formErrors.descripcion && (
+              <span className={style.errorMsg}>{formErrors.descripcion}</span>
+            )}
+
             <input
               type="date"
               onChange={handleChange}
-              required
               value={formValues.fechaCierre}
               autoComplete="off"
               name="fechaCierre"
             />
+            {formErrors.fechaCierre && (
+              <span className={style.errorMsg}>{formErrors.fechaCierre}</span>
+            )}
+
           </div>
           <div className={style.buttonCard}>
             <button type="button" onClick={handleClose}>

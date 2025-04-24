@@ -9,40 +9,18 @@
         "fechaLimite": "2025-04-11",
         "nombre": "Tarea Pepe 1",
         "fechaCierre": "2025-04-22"
+      },
+      {
+        "id": "2025-04-24T03:35:37.854Z",
+        "estado": "pendiente",
+        "nombre": "YUP32",
+        "descripcion": "Haciendo implementacion",
+        "fechaCierre": "2025-04-24"
       }
     ]
   },
   "sprintList": {
     "sprints": [
-      {
-        "id": "b0e3f34b-68c6-49eb-b059-ab251ed81629",
-        "fechaInicio": "2025-03-05",
-        "fechaCierre": "2025-03-11",
-        "nombre": "Sprint 1",
-        "tareas": [
-          {
-            "id": "m9k1zsh7ofrvmnegnbe",
-            "nombre": "Tarea5",
-            "descripcion": "Esta es una tarea",
-            "fechaCierre": "2025-04-25",
-            "estado": "pendiente"
-          },
-          {
-            "id": "m9k2gvem026hlmpuib47",
-            "nombre": "TArea Definitiva",
-            "descripcion": "TATATATATa",
-            "fechaCierre": "2025-04-26",
-            "estado": "pendiente"
-          },
-          {
-            "id": "dcec0ad4-31e0-4279-8ccf-72bd1f20b52d",
-            "titulo": "Tarea backlog 1",
-            "descripcion": "tarea backlog",
-            "estado": "pendiente",
-            "fechaLimite": "2025-03-05"
-          }
-        ]
-      },
       {
         "id": "m9j3mmzpi8i304z2lik",
         "nombre": "Sprint Prueba",
