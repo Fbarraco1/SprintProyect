@@ -58,47 +58,17 @@
         ]
       },
       {
-        "id": "m9j3mmzpi8i304z2lik",
-        "nombre": "Sprint Prueba",
-        "fechaInicio": "2025-04-06",
-        "fechaCierre": "2025-04-25",
-        "tareas": [
-          {
-            "id": "Mon Apr 21 2025",
-            "estado": "completada",
-            "nombre": "Enviar Tarea a Sprint",
-            "descripcion": "aaa",
-            "fechaCierre": "2025-04-30",
-            "fechaLimite": "2025-04-14"
-          },
-          {
-            "id": "2025-04-23T13:44:17.659Z",
-            "estado": "pendiente",
-            "nombre": "Tarea 2025",
-            "descripcion": "tarea clase miercoles",
-            "fechaCierre": "2025-04-23"
-          },
-          {
-            "id": "m9vgnpjrshdloodm46",
-            "nombre": "Tarea25",
-            "descripcion": "Hacer tareas",
-            "fechaCierre": "2025-04-27",
-            "estado": "en progreso"
-          }
-        ]
-      },
-      {
         "id": "m9vya26rt4skg1ew0b7",
         "nombre": "Subir Video Final",
         "fechaInicio": "2025-04-08",
         "fechaCierre": "2025-05-08",
         "tareas": [
           {
-            "id": "2025-04-25T00:57:06.078Z",
-            "estado": "completada",
-            "nombre": "sssss",
-            "descripcion": "ssssssssssss",
-            "fechaCierre": "2025-04-14"
+            "id": "2025-04-25T01:02:10.601Z",
+            "estado": "pendiente",
+            "nombre": "Tarea Video Final",
+            "descripcion": "Subo el video a youtube",
+            "fechaCierre": "2025-04-21"
           }
         ]
       }
