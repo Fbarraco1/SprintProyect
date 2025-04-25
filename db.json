@@ -2,20 +2,12 @@
   "backlog": {
     "tareas": [
       {
-        "id": "Thu Apr 10 2025",
-        "estado": "",
-        "titulo": "Tarea Definitiva 1",
-        "descripcion": "pepe",
-        "fechaLimite": "2025-04-11",
-        "nombre": "Tarea Pepe 1",
-        "fechaCierre": "2025-04-22"
-      },
-      {
         "id": "2025-04-24T03:35:37.854Z",
         "estado": "pendiente",
-        "nombre": "YUP32",
+        "nombre": "YUP323",
         "descripcion": "Haciendo implementacion",
         "fechaCierre": "2025-04-24"
+<<<<<<< HEAD
       },
       {
         "id": "2025-04-24T15:13:08.407Z",
@@ -30,6 +22,8 @@
         "nombre": "JAJAJAJAJJA",
         "descripcion": "kkkkkkkkkkkkk",
         "fechaCierre": "2025-04-18"
+=======
+>>>>>>> c53a73cbc9239e11e83d2598ac92582a8ec49fc5
       }
     ]
   },
@@ -67,6 +61,7 @@
         ]
       },
       {
+<<<<<<< HEAD
         "id": "m9j3mmzpi8i304z2lik",
         "nombre": "Sprint Prueba",
         "fechaInicio": "2025-04-06",
@@ -101,6 +96,35 @@
         "nombre": "Subir Video Final",
         "fechaInicio": "2025-04-08",
         "fechaCierre": "2025-05-08"
+=======
+        "id": "m9r4y4hcf6n4mc6fw5",
+        "nombre": "Crear Backend Ecommerce",
+        "fechaInicio": "2025-04-21",
+        "fechaCierre": "2025-04-21",
+        "tareas": [
+          {
+            "id": "m9r4z4vxl6q6g08605o",
+            "nombre": "El pepe",
+            "descripcion": "Ete setch",
+            "fechaCierre": "2025-04-22",
+            "estado": "en progreso"
+          },
+          {
+            "id": "Wed Apr 16 2025",
+            "estado": "",
+            "titulo": "s",
+            "descripcion": "s",
+            "fechaLimite": "2025-04-13"
+          },
+          {
+            "id": "Tue Apr 22 2025",
+            "estado": "pendiente",
+            "nombre": "Terminar proyecto",
+            "descripcion": "Hay q terminar la logica",
+            "fechaCierre": "2025-04-23"
+          }
+        ]
+>>>>>>> c53a73cbc9239e11e83d2598ac92582a8ec49fc5
       }
     ]
   }

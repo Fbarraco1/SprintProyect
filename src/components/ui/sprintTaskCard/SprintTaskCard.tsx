@@ -19,6 +19,8 @@ export const SprintTaskCard = ({ tarea }: Props) => {
   const [isVerTareaOpen, setIsVerTareaOpen] = useState(false);
   const [mostrarOpciones, setmostrarOpciones] = useState(false);
 
+  const { crearTarea } = useTarea();
+
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
@@ -66,24 +68,26 @@ export const SprintTaskCard = ({ tarea }: Props) => {
             return;
           }
 
-          await eliminarTareaSprint(sprintActivoId, tarea);
-          
-          Swal.fire(
-            '¡Eliminada!',
-            'La tarea ha sido eliminada correctamente.',
-            'success'
-          );
-        } catch (error) {
-          console.error("Error al eliminar la tarea del sprint:", error);
-          Swal.fire(
-            'Error',
-            'No se pudo eliminar la tarea.',
-            'error'
-          );
-        }
-      }
-    });
+      await eliminarTareaSprint(sprintActivoId, tarea);
+    } catch (error) {
+      console.error("Error al eliminar la tarea del sprint:", error);
+    }
   };
+
+  const handleEnviarAlBacklog = async () => {
+    try {
+      if (!sprintActivoId) {
+        console.error("El ID del sprint activo no está definido.");
+        return;
+      }
+
+      await eliminarTareaSprint(sprintActivoId, tarea);
+      await crearTarea({ ...tarea, id: new Date().toISOString() });
+      Swal.fire("Tarea enviada al Backlog", "La Tarea se ha enviado correctamente", "success");
+    } catch (error) {
+      console.error("Error al enviar la tarea al Backlog:", error);
+    }
+  }
 
   const handleVerTarea = () => {
     setIsVerTareaOpen(true);
@@ -111,7 +115,7 @@ export const SprintTaskCard = ({ tarea }: Props) => {
         )}
       </div>
 
-      <button className={styles.moveBtn}>Enviar a: Backlog</button>
+      <button onClick={handleEnviarAlBacklog} className={styles.moveBtn}>Enviar a: Backlog</button>
 
       <div className={styles.icons}>
         <span onClick={handleVerTarea}><Eye size={20} /></span>

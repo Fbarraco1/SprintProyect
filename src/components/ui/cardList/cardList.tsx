@@ -17,6 +17,7 @@ export const CardList: FC<ICardList> = ({ tarea, handleOpenModalEdit }) => {
   const [modalTarea, setModalTarea] = useState<ITarea | null>(null);
 
   const eliminarTareaByid = () => {
+<<<<<<< HEAD
     Swal.fire({
       title: '¿Estás seguro?',
       text: `¿Deseas eliminar la tarea "${tarea.nombre}"?`,
@@ -45,6 +46,11 @@ export const CardList: FC<ICardList> = ({ tarea, handleOpenModalEdit }) => {
         }
       }
     });
+=======
+    eliminarTarea(tarea.id!);
+    Swal.fire("Tarea eliminada", "La Tarea se ha eliminado correctamente", "success");
+    
+>>>>>>> c53a73cbc9239e11e83d2598ac92582a8ec49fc5
   };
 
   const editarTarea = () => {
