@@ -23,7 +23,6 @@ export const CardSprint: FC<ISprintList> = ({ sprint, handleOpenModalEdit }) => 
   const eliminarSprintById = (e: React.MouseEvent) => {
     e.stopPropagation();
     e.preventDefault();
-<<<<<<< HEAD
     
     Swal.fire({
       title: '¿Estás seguro?',
@@ -53,11 +52,6 @@ export const CardSprint: FC<ISprintList> = ({ sprint, handleOpenModalEdit }) => 
         }
       }
     });
-=======
-    eliminarSprint(sprint.id!);
-    Swal.fire("Tarea eliminada", "La Tarea se ha eliminado correctamente", "success");
-    
->>>>>>> c53a73cbc9239e11e83d2598ac92582a8ec49fc5
   };
 
   const editarSprint = () => {

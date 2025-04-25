@@ -68,10 +68,12 @@ export const SprintTaskCard = ({ tarea }: Props) => {
             return;
           }
 
-      await eliminarTareaSprint(sprintActivoId, tarea);
-    } catch (error) {
-      console.error("Error al eliminar la tarea del sprint:", error);
-    }
+          await eliminarTareaSprint(sprintActivoId, tarea);
+        } catch (error) {
+          console.error("Error al eliminar la tarea del sprint:", error);
+        }
+      }
+    });
   };
 
   const handleEnviarAlBacklog = async () => {
