@@ -11,15 +11,15 @@
       {
         "id": "2025-04-24T15:13:08.407Z",
         "estado": "pendiente",
-        "nombre": "kkkkkkkkkk",
-        "descripcion": "kkkkkkkkkk",
+        "nombre": "Tarea 55",
+        "descripcion": "Completar descripciones",
         "fechaCierre": "2025-05-04"
       },
       {
         "id": "2025-04-24T15:28:12.701Z",
         "estado": "pendiente",
-        "nombre": "JAJAJAJAJJA",
-        "descripcion": "kkkkkkkkkkkkk",
+        "nombre": "Tarea 4",
+        "descripcion": "Subir repo",
         "fechaCierre": "2025-04-18"
       }
     ]
